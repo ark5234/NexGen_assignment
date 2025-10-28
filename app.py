@@ -291,15 +291,14 @@ Generate a comprehensive PDF report with:
 col1, col2 = st.columns([2, 1])
 
 with col1:
-    # Quick stats preview
     quick_stats = pd.DataFrame({
         'Metric': ['Total Orders', 'On-Time Rate', 'Avg Cost', 'CO2 Emissions', 'Delayed Orders'],
         'Value': [
-            int(filtered.shape[0]),
+            str(int(filtered.shape[0])),
             f"{100*(1 - filtered['delayed_flag'].mean() if filtered['delayed_flag'].count()>0 else 0):.1f}%",
             f"₹{filtered['delivery_cost'].mean():.2f}",
             f"{filtered['co2_g_per_km_est'].sum()/1000:.1f} kg",
-            int(filtered['delayed_flag'].sum() if 'delayed_flag' in filtered.columns else 0)
+            str(int(filtered['delayed_flag'].sum() if 'delayed_flag' in filtered.columns else 0))
         ]
     })
     st.dataframe(quick_stats, use_container_width=True, hide_index=True)
