@@ -1,0 +1,201 @@
+order_id,order_date,customer_segment,priority,category,order_value,origin,destination,special_handling
+ORD1000,2025-08-07,Individual,Standard,Books,2413.65,Delhi,Mumbai,None
+ORD1001,2025-10-07,SMB,Express,Books,3819.09,Chennai,Kolkata,None
+ORD1002,2025-09-26,SMB,Standard,Healthcare,4521.47,Kolkata,Kolkata,None
+ORD1003,2025-09-07,Individual,Standard,Home,3617.44,Delhi,Bangalore,None
+ORD1004,2025-09-06,Individual,Economy,Electronics,4817.9,Mumbai,Delhi,None
+ORD1005,2025-10-15,Individual,Standard,Home,3920.93,Kolkata,Mumbai,None
+ORD1006,2025-08-06,SMB,Standard,Books,4340.67,Mumbai,Mumbai,Refrigerated
+ORD1007,2025-09-30,SMB,Standard,Healthcare,614.82,Bangalore,Kolkata,None
+ORD1008,2025-08-17,Enterprise,Standard,Books,3675.45,Delhi,Mumbai,Fragile
+ORD1009,2025-08-07,Individual,Express,Healthcare,2228.44,Mumbai,Bangkok,None
+ORD1010,2025-09-15,SMB,Standard,Fashion,2787.86,Chennai,Bangalore,None
+ORD1011,2025-10-25,SMB,Standard,Books,3287.81,Mumbai,Singapore,None
+ORD1012,2025-10-04,SMB,Standard,Fashion,4850.58,Chennai,Dubai,None
+ORD1013,2025-10-06,SMB,Standard,Food,4923.66,Chennai,Kolkata,HighValue
+ORD1014,2025-10-02,Enterprise,Standard,Healthcare,1476.73,Mumbai,Hong Kong,None
+ORD1015,2025-10-08,Individual,Standard,Books,3682.08,Mumbai,Mumbai,None
+ORD1016,2025-09-14,Individual,Standard,Food,3762.42,Chennai,Bangalore,None
+ORD1017,2025-08-10,Individual,Standard,Healthcare,1765.14,Bangalore,Bangalore,Fragile
+ORD1018,2025-10-13,SMB,Standard,Electronics,663.16,Mumbai,Delhi,None
+ORD1019,2025-09-08,SMB,Economy,Electronics,252.69,Kolkata,Bangalore,None
+ORD1020,2025-09-13,SMB,Economy,Electronics,3897.85,Delhi,Bangalore,Refrigerated
+ORD1021,2025-09-01,SMB,Standard,Electronics,2474.01,Mumbai,Dubai,Fragile
+ORD1022,2025-08-15,Enterprise,Standard,Home,4928.42,Kolkata,Bangalore,HighValue
+ORD1023,2025-10-21,SMB,Standard,Books,2351.62,Mumbai,Hong Kong,None
+ORD1024,2025-10-08,Enterprise,Economy,Books,4890.69,Bangalore,Dubai,None
+ORD1025,2025-09-25,SMB,Standard,Electronics,2087.3,Kolkata,Bangkok,None
+ORD1026,2025-09-04,SMB,Economy,Electronics,3978.73,Bangalore,Mumbai,Refrigerated
+ORD1027,2025-10-12,Enterprise,Standard,Fashion,469.86,Bangalore,Bangkok,None
+ORD1028,2025-09-17,Enterprise,Standard,Healthcare,2799.54,Delhi,Singapore,Fragile
+ORD1029,2025-09-07,SMB,Standard,Food,4020.2,Mumbai,Bangkok,None
+ORD1030,2025-09-08,Enterprise,Standard,Healthcare,4627.27,Bangalore,Chennai,None
+ORD1031,2025-08-19,Individual,Standard,Fashion,4121.79,Kolkata,Bangkok,Fragile
+ORD1032,2025-08-07,SMB,Standard,Books,233.01,Mumbai,Singapore,None
+ORD1033,2025-09-17,SMB,Economy,Food,1894.88,Kolkata,Mumbai,Refrigerated
+ORD1034,2025-10-17,SMB,Express,Electronics,291.06,Bangalore,Chennai,None
+ORD1035,2025-08-04,Enterprise,Standard,Books,590.95,Bangalore,Delhi,None
+ORD1036,2025-10-15,Individual,Express,Home,3392.76,Mumbai,Bangkok,None
+ORD1037,2025-10-12,SMB,Standard,Electronics,3580.63,Chennai,Bangalore,None
+ORD1038,2025-08-23,Individual,Express,Healthcare,3879.92,Mumbai,Bangalore,None
+ORD1039,2025-09-24,Enterprise,Economy,Books,4334.01,Delhi,Kolkata,None
+ORD1040,2025-08-13,SMB,Express,Industrial,3710.19,Chennai,Chennai,None
+ORD1041,2025-10-06,SMB,Economy,Books,4014.31,Mumbai,Mumbai,None
+ORD1042,2025-10-01,Individual,Economy,Food,292.37,Bangalore,Hong Kong,None
+ORD1043,2025-08-30,SMB,Standard,Food,1210.95,Bangalore,Hong Kong,None
+ORD1044,2025-08-05,SMB,Standard,Industrial,3128.39,Mumbai,Dubai,None
+ORD1045,2025-10-25,SMB,Standard,Fashion,4297.72,Delhi,Singapore,None
+ORD1046,2025-09-08,SMB,Economy,Fashion,72.28,Delhi,Chennai,None
+ORD1047,2025-10-18,SMB,Standard,Industrial,2597.42,Chennai,Kolkata,Fragile
+ORD1048,2025-09-29,SMB,Standard,Industrial,3402.57,Kolkata,Kolkata,Refrigerated
+ORD1049,2025-10-08,Enterprise,Express,Electronics,196.56,Kolkata,Delhi,None
+ORD1050,2025-10-06,Individual,Standard,Healthcare,2036.71,Mumbai,Mumbai,None
+ORD1051,2025-08-16,Individual,Express,Food,4483.39,Mumbai,Bangalore,None
+ORD1052,2025-08-31,Enterprise,Standard,Healthcare,3374.48,Mumbai,Kolkata,None
+ORD1053,2025-09-10,SMB,Standard,Home,1226.41,Bangalore,Delhi,None
+ORD1054,2025-09-12,Enterprise,Standard,Electronics,4271.27,Mumbai,Mumbai,None
+ORD1055,2025-08-02,SMB,Standard,Home,1772.76,Delhi,Hong Kong,None
+ORD1056,2025-09-17,SMB,Standard,Healthcare,4274.06,Kolkata,Chennai,Refrigerated
+ORD1057,2025-08-12,SMB,Standard,Books,1529.77,Kolkata,Singapore,None
+ORD1058,2025-10-04,Individual,Standard,Food,2972.09,Kolkata,Kolkata,None
+ORD1059,2025-09-29,Individual,Standard,Food,2014.85,Delhi,Dubai,Fragile
+ORD1060,2025-10-21,Enterprise,Economy,Books,1410.38,Chennai,Dubai,HighValue
+ORD1061,2025-10-05,Individual,Express,Industrial,4438.46,Chennai,Bangalore,None
+ORD1062,2025-08-31,SMB,Express,Fashion,978.59,Mumbai,Hong Kong,None
+ORD1063,2025-10-25,Enterprise,Express,Industrial,469.82,Bangalore,Chennai,None
+ORD1064,2025-09-04,SMB,Standard,Books,1742.54,Bangalore,Hong Kong,None
+ORD1065,2025-08-28,SMB,Standard,Food,3602.31,Delhi,Chennai,HighValue
+ORD1066,2025-10-19,Individual,Standard,Home,4046.79,Chennai,Mumbai,None
+ORD1067,2025-09-01,Individual,Standard,Industrial,4993.78,Chennai,Dubai,None
+ORD1068,2025-08-05,SMB,Standard,Food,1516.99,Bangalore,Mumbai,None
+ORD1069,2025-09-10,Individual,Economy,Electronics,2069.31,Chennai,Dubai,None
+ORD1070,2025-10-09,SMB,Standard,Industrial,727.27,Chennai,Mumbai,Refrigerated
+ORD1071,2025-08-16,SMB,Standard,Fashion,2895.62,Bangalore,Delhi,None
+ORD1072,2025-09-09,SMB,Standard,Books,4988.02,Delhi,Singapore,None
+ORD1073,2025-08-10,Individual,Standard,Healthcare,3519.36,Chennai,Bangkok,Refrigerated
+ORD1074,2025-09-29,Enterprise,Express,Healthcare,2996.3,Chennai,Chennai,Refrigerated
+ORD1075,2025-09-10,Enterprise,Express,Fashion,1992.23,Kolkata,Delhi,None
+ORD1076,2025-08-28,SMB,Economy,Industrial,4580.73,Mumbai,Bangalore,None
+ORD1077,2025-08-19,Individual,Standard,Fashion,2509.74,Bangalore,Bangkok,None
+ORD1078,2025-09-18,Individual,Standard,Food,715.12,Kolkata,Dubai,None
+ORD1079,2025-09-28,Individual,Standard,Books,1858.62,Bangalore,Mumbai,None
+ORD1080,2025-10-22,Individual,Standard,Home,382.48,Kolkata,Chennai,None
+ORD1081,2025-09-07,Individual,Economy,Home,1049.8,Mumbai,Bangalore,Refrigerated
+ORD1082,2025-08-13,SMB,Standard,Home,137.46,Mumbai,Delhi,Refrigerated
+ORD1083,2025-10-12,SMB,Standard,Healthcare,2293.74,Chennai,Hong Kong,Fragile
+ORD1084,2025-09-24,Individual,Standard,Fashion,3190.97,Delhi,Singapore,HighValue
+ORD1085,2025-10-01,SMB,Economy,Books,1749.3,Bangalore,Delhi,Fragile
+ORD1086,2025-08-07,SMB,Standard,Books,2130.89,Bangalore,Singapore,Fragile
+ORD1087,2025-08-27,Enterprise,Economy,Home,4798.09,Bangalore,Chennai,Fragile
+ORD1088,2025-10-07,Individual,Express,Industrial,3772.22,Kolkata,Mumbai,None
+ORD1089,2025-10-12,SMB,Economy,Electronics,2727.24,Mumbai,Kolkata,None
+ORD1090,2025-09-07,Individual,Standard,Healthcare,1458.48,Chennai,Delhi,None
+ORD1091,2025-10-10,SMB,Express,Healthcare,4490.13,Kolkata,Bangalore,None
+ORD1092,2025-10-13,Enterprise,Standard,Books,1213.73,Chennai,Hong Kong,None
+ORD1093,2025-09-02,Individual,Standard,Food,1660.45,Delhi,Dubai,None
+ORD1094,2025-10-18,Enterprise,Express,Food,4549.87,Mumbai,Delhi,None
+ORD1095,2025-08-24,Enterprise,Standard,Electronics,2671.23,Chennai,Hong Kong,None
+ORD1096,2025-08-20,SMB,Economy,Books,3724.47,Bangalore,Singapore,None
+ORD1097,2025-09-29,Individual,Standard,Books,2974.19,Mumbai,Hong Kong,Fragile
+ORD1098,2025-09-25,Enterprise,Standard,Electronics,3284.52,Delhi,Dubai,Refrigerated
+ORD1099,2025-08-11,SMB,Standard,Healthcare,1531.95,Kolkata,Chennai,None
+ORD1100,2025-10-12,Individual,Standard,Healthcare,1244.79,Delhi,Kolkata,None
+ORD1101,2025-08-16,Individual,Economy,Healthcare,1646.34,Mumbai,Kolkata,None
+ORD1102,2025-10-10,SMB,Standard,Home,819.44,Chennai,Dubai,Fragile
+ORD1103,2025-07-30,Enterprise,Express,Fashion,4377.86,Mumbai,Bangalore,Fragile
+ORD1104,2025-10-09,Enterprise,Economy,Food,1452.07,Kolkata,Bangalore,None
+ORD1105,2025-10-08,SMB,Economy,Fashion,2829.37,Kolkata,Bangalore,Fragile
+ORD1106,2025-10-08,Enterprise,Standard,Fashion,3970.27,Kolkata,Bangalore,None
+ORD1107,2025-09-27,SMB,Economy,Home,3929.93,Kolkata,Delhi,None
+ORD1108,2025-09-10,Enterprise,Express,Home,2220.01,Delhi,Mumbai,HighValue
+ORD1109,2025-10-01,SMB,Economy,Electronics,2407.47,Delhi,Bangkok,None
+ORD1110,2025-08-23,SMB,Standard,Industrial,4973.77,Delhi,Mumbai,None
+ORD1111,2025-10-08,SMB,Standard,Fashion,3389.26,Bangalore,Hong Kong,None
+ORD1112,2025-09-18,Enterprise,Express,Fashion,4082.46,Kolkata,Mumbai,None
+ORD1113,2025-09-09,Individual,Economy,Food,4517.64,Chennai,Dubai,Refrigerated
+ORD1114,2025-09-13,Individual,Express,Fashion,3948.57,Chennai,Bangalore,HighValue
+ORD1115,2025-09-19,Individual,Standard,Healthcare,966.64,Kolkata,Kolkata,None
+ORD1116,2025-08-02,Enterprise,Express,Home,2832.75,Chennai,Bangalore,None
+ORD1117,2025-08-11,Enterprise,Standard,Industrial,554.38,Delhi,Kolkata,Fragile
+ORD1118,2025-08-21,Individual,Express,Books,3281.96,Bangalore,Kolkata,None
+ORD1119,2025-08-09,SMB,Economy,Healthcare,4778.98,Bangalore,Kolkata,Refrigerated
+ORD1120,2025-09-07,SMB,Standard,Electronics,2588.02,Mumbai,Chennai,None
+ORD1121,2025-09-28,SMB,Express,Electronics,2193.21,Chennai,Kolkata,None
+ORD1122,2025-09-26,SMB,Express,Fashion,227.42,Chennai,Hong Kong,Fragile
+ORD1123,2025-09-10,Individual,Express,Fashion,4800.88,Chennai,Chennai,None
+ORD1124,2025-10-14,SMB,Standard,Books,559.86,Bangalore,Chennai,None
+ORD1125,2025-09-18,Individual,Economy,Books,253.34,Chennai,Delhi,None
+ORD1126,2025-08-06,Enterprise,Standard,Books,1268.03,Kolkata,Chennai,None
+ORD1127,2025-10-06,SMB,Economy,Industrial,374.38,Bangalore,Delhi,None
+ORD1128,2025-09-19,SMB,Express,Healthcare,2302.83,Bangalore,Delhi,None
+ORD1129,2025-09-25,Enterprise,Economy,Industrial,2604.63,Mumbai,Bangkok,HighValue
+ORD1130,2025-09-18,Enterprise,Economy,Food,1597.22,Chennai,Mumbai,HighValue
+ORD1131,2025-09-17,SMB,Standard,Industrial,302.25,Kolkata,Kolkata,None
+ORD1132,2025-08-07,Individual,Standard,Books,602.42,Chennai,Hong Kong,None
+ORD1133,2025-09-18,SMB,Economy,Books,1953.3,Kolkata,Bangkok,Fragile
+ORD1134,2025-10-09,Individual,Express,Industrial,349.62,Kolkata,Delhi,HighValue
+ORD1135,2025-08-26,Individual,Standard,Electronics,3506.04,Chennai,Delhi,None
+ORD1136,2025-09-22,SMB,Express,Books,1074.75,Bangalore,Chennai,None
+ORD1137,2025-08-01,Individual,Standard,Food,1545.25,Mumbai,Kolkata,None
+ORD1138,2025-08-30,Enterprise,Standard,Books,2000.92,Mumbai,Bangkok,None
+ORD1139,2025-09-07,Enterprise,Standard,Healthcare,2112.22,Delhi,Delhi,None
+ORD1140,2025-10-26,Individual,Economy,Home,58.22,Bangalore,Delhi,None
+ORD1141,2025-08-18,Individual,Express,Food,604.75,Chennai,Bangalore,Fragile
+ORD1142,2025-08-23,SMB,Standard,Home,4320.68,Bangalore,Hong Kong,Fragile
+ORD1143,2025-09-04,SMB,Express,Books,56.1,Mumbai,Mumbai,Fragile
+ORD1144,2025-10-27,SMB,Standard,Food,2565.43,Delhi,Chennai,None
+ORD1145,2025-10-14,Individual,Standard,Healthcare,2473.03,Kolkata,Delhi,None
+ORD1146,2025-08-02,SMB,Economy,Healthcare,1698.82,Kolkata,Delhi,Fragile
+ORD1147,2025-08-20,SMB,Standard,Books,2185.07,Delhi,Bangkok,Fragile
+ORD1148,2025-10-11,SMB,Express,Industrial,3913.88,Kolkata,Mumbai,None
+ORD1149,2025-08-04,SMB,Standard,Books,4213.96,Chennai,Bangalore,Refrigerated
+ORD1150,2025-10-15,SMB,Express,Food,1338.73,Kolkata,Bangkok,None
+ORD1151,2025-08-24,Individual,Economy,Healthcare,1646.33,Kolkata,Singapore,Refrigerated
+ORD1152,2025-10-20,SMB,Standard,Healthcare,1250.29,Chennai,Mumbai,None
+ORD1153,2025-08-25,SMB,Express,Home,2425.32,Delhi,Kolkata,None
+ORD1154,2025-09-07,SMB,Express,Food,3432.13,Chennai,Bangkok,None
+ORD1155,2025-09-27,Individual,Express,Industrial,1179.85,Delhi,Chennai,None
+ORD1156,2025-08-10,Individual,Economy,Electronics,1687.14,Delhi,Kolkata,None
+ORD1157,2025-09-18,Enterprise,Standard,Books,4655.4,Chennai,Kolkata,None
+ORD1158,2025-09-13,Enterprise,Standard,Food,290.42,Bangalore,Singapore,None
+ORD1159,2025-10-08,SMB,Standard,Food,2330.81,Bangalore,Delhi,Fragile
+ORD1160,2025-10-27,Enterprise,Standard,Industrial,3572.21,Delhi,Hong Kong,None
+ORD1161,2025-09-27,Individual,Express,Healthcare,794.75,Bangalore,Bangkok,None
+ORD1162,2025-09-04,SMB,Economy,Books,284.5,Mumbai,Delhi,Fragile
+ORD1163,2025-09-04,Enterprise,Standard,Healthcare,734.12,Chennai,Hong Kong,None
+ORD1164,2025-09-05,Individual,Standard,Healthcare,4598.17,Bangalore,Hong Kong,None
+ORD1165,2025-10-11,Enterprise,Standard,Electronics,95.84,Kolkata,Dubai,Refrigerated
+ORD1166,2025-08-27,SMB,Standard,Electronics,982.19,Bangalore,Chennai,Fragile
+ORD1167,2025-08-14,Enterprise,Economy,Food,204.85,Bangalore,Kolkata,None
+ORD1168,2025-08-29,Enterprise,Express,Home,597.62,Mumbai,Hong Kong,Fragile
+ORD1169,2025-08-01,Enterprise,Standard,Home,3119.74,Mumbai,Delhi,None
+ORD1170,2025-08-08,Enterprise,Standard,Industrial,1246.11,Delhi,Hong Kong,None
+ORD1171,2025-08-07,Enterprise,Standard,Industrial,2867.6,Delhi,Bangkok,Fragile
+ORD1172,2025-10-07,Enterprise,Express,Food,2971.47,Delhi,Dubai,None
+ORD1173,2025-10-03,SMB,Express,Fashion,4254.7,Delhi,Chennai,Fragile
+ORD1174,2025-09-30,SMB,Standard,Electronics,73.47,Chennai,Singapore,None
+ORD1175,2025-09-09,SMB,Standard,Food,4274.18,Mumbai,Mumbai,Fragile
+ORD1176,2025-10-02,SMB,Standard,Food,3114.64,Delhi,Bangkok,None
+ORD1177,2025-08-13,SMB,Standard,Fashion,855.58,Mumbai,Chennai,None
+ORD1178,2025-10-19,Individual,Standard,Fashion,3876.04,Delhi,Mumbai,None
+ORD1179,2025-09-13,Individual,Standard,Electronics,4284.68,Chennai,Hong Kong,None
+ORD1180,2025-10-22,Enterprise,Standard,Industrial,1308.6,Mumbai,Singapore,Fragile
+ORD1181,2025-08-12,Enterprise,Standard,Home,4598.03,Delhi,Singapore,None
+ORD1182,2025-09-12,SMB,Standard,Industrial,2299.56,Mumbai,Mumbai,None
+ORD1183,2025-09-30,SMB,Standard,Healthcare,3036.95,Kolkata,Dubai,None
+ORD1184,2025-09-12,SMB,Express,Food,4924.02,Chennai,Singapore,None
+ORD1185,2025-09-08,SMB,Standard,Food,1839.6,Delhi,Hong Kong,Fragile
+ORD1186,2025-08-13,Enterprise,Standard,Electronics,4075.14,Mumbai,Hong Kong,None
+ORD1187,2025-09-02,SMB,Standard,Industrial,1626.08,Mumbai,Delhi,HighValue
+ORD1188,2025-08-20,SMB,Standard,Healthcare,4006.11,Bangalore,Delhi,None
+ORD1189,2025-08-26,Enterprise,Standard,Electronics,3023.63,Chennai,Bangkok,None
+ORD1190,2025-09-29,Individual,Standard,Food,1120.96,Bangalore,Kolkata,None
+ORD1191,2025-09-24,Enterprise,Standard,Fashion,2099.43,Kolkata,Chennai,None
+ORD1192,2025-09-22,Individual,Standard,Fashion,1622.3,Delhi,Bangalore,Refrigerated
+ORD1193,2025-08-31,Enterprise,Standard,Industrial,436.64,Delhi,Singapore,HighValue
+ORD1194,2025-10-24,Individual,Standard,Healthcare,197.68,Bangalore,Dubai,Refrigerated
+ORD1195,2025-08-06,Individual,Standard,Industrial,1765.07,Delhi,Mumbai,None
+ORD1196,2025-08-29,Individual,Standard,Industrial,144.22,Kolkata,Kolkata,None
+ORD1197,2025-08-09,Individual,Standard,Home,869.16,Mumbai,Bangkok,None
+ORD1198,2025-08-29,Individual,Standard,Books,3639.66,Bangalore,Bangalore,None
+ORD1199,2025-10-24,SMB,Standard,Industrial,3555.05,Bangalore,Bangalore,Fragile

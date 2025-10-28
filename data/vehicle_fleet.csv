@@ -1,0 +1,51 @@
+vehicle_id,type,capacity_kg,fuel_eff_km_per_l,location,status,age_years,co2_g_per_km
+VH200,Truck,942.0,11.39,Delhi,Available,0.7,23.705
+VH201,Refrigerated,693.0,7.26,Mumbai,Available,6.2,37.19
+VH202,Refrigerated,3746.0,5.75,Bangalore,Available,1.2,46.957
+VH203,Van,3925.0,6.05,Delhi,Available,9.4,44.628
+VH204,Van,4294.0,14.45,Mumbai,In Transit,9.4,18.685
+VH205,Truck,756.0,16.23,Bangalore,Available,5.7,16.636
+VH206,Truck,3996.0,6.86,Mumbai,Available,6.4,39.359
+VH207,Bike,2194.0,8.75,Mumbai,Available,3.3,30.857
+VH208,Bike,1865.0,7.54,Mumbai,Available,1.1,35.809
+VH209,Bike,1279.0,5.35,Bangalore,Available,7.5,50.467
+VH210,Bike,4982.0,12.19,Kolkata,In Transit,1.5,22.149
+VH211,Bike,786.0,14.1,Delhi,Maintenance,1.3,19.149
+VH212,Truck,4222.0,13.42,Delhi,Available,3.5,20.119
+VH213,Van,3378.0,10.04,Delhi,Maintenance,0.6,26.892
+VH214,Van,3808.0,12.22,Delhi,Available,4.6,22.095
+VH215,Van,3703.0,6.22,Chennai,In Transit,7.2,43.408
+VH216,Van,4363.0,7.01,Delhi,In Transit,8.1,38.516
+VH217,Van,1327.0,17.11,Chennai,In Transit,6.2,15.78
+VH218,Bike,504.0,14.9,Kolkata,In Transit,8.5,18.121
+VH219,Van,3193.0,17.0,Kolkata,Available,4.4,15.882
+VH220,Bike,2092.0,16.92,Bangalore,Available,8.6,15.957
+VH221,Refrigerated,1057.0,13.44,Chennai,Available,5.3,20.089
+VH222,Truck,1338.0,17.07,Kolkata,Available,2.6,15.817
+VH223,Truck,1993.0,10.42,Chennai,In Transit,9.5,25.912
+VH224,Van,816.0,5.05,Delhi,Available,3.1,53.465
+VH225,Truck,756.0,5.81,Mumbai,Available,0.7,46.472
+VH226,Van,4622.0,6.42,Mumbai,Available,2.8,42.056
+VH227,Bike,1904.0,6.24,Kolkata,Available,4.0,43.269
+VH228,Van,4920.0,9.57,Bangalore,In Transit,3.8,28.213
+VH229,Van,4840.0,14.12,Delhi,In Transit,5.5,19.122
+VH230,Refrigerated,1142.0,15.28,Delhi,Available,8.9,17.67
+VH231,Truck,3717.0,12.67,Delhi,Available,3.3,21.31
+VH232,Truck,3204.0,6.9,Kolkata,Available,5.4,39.13
+VH233,Truck,3608.0,14.72,Chennai,Available,3.7,18.342
+VH234,Van,933.0,9.61,Kolkata,In Transit,8.3,28.096
+VH235,Truck,1349.0,5.17,Delhi,Available,2.0,52.224
+VH236,Van,845.0,8.65,Bangalore,Available,1.5,31.214
+VH237,Van,3219.0,9.3,Mumbai,Available,5.3,29.032
+VH238,Van,4940.0,8.57,Kolkata,Maintenance,6.9,31.505
+VH239,Van,3524.0,15.55,Bangalore,In Transit,8.1,17.363
+VH240,Van,3698.0,14.88,Bangalore,Available,6.1,18.145
+VH241,Truck,4931.0,14.04,Bangalore,Available,7.9,19.231
+VH242,Van,3551.0,6.81,Delhi,Available,4.2,39.648
+VH243,Van,681.0,15.5,Kolkata,Maintenance,0.8,17.419
+VH244,Truck,4402.0,13.8,Bangalore,Available,1.6,19.565
+VH245,Van,2141.0,7.53,Chennai,Available,0.9,35.857
+VH246,Truck,520.0,13.43,Mumbai,Maintenance,3.6,20.104
+VH247,Bike,2783.0,11.29,Delhi,In Transit,5.2,23.915
+VH248,Truck,4717.0,10.71,Kolkata,Available,3.9,25.21
+VH249,Bike,1658.0,6.46,Mumbai,Available,5.8,41.796

@@ -1,0 +1,84 @@
+order_id,rating,feedback,recommendation_likelihood,issue_category,feedback_date
+ORD1164,4,"Late delivery, unhappy",1,None,2025-09-24
+ORD1189,5,Wrong item delivered,1,Damage,2025-10-21
+ORD1031,5,Excellent service,1,None,2025-09-19
+ORD1042,5,Driver was helpful,1,None,2025-08-25
+ORD1198,3,"Delivered on time, good condition",1,None,2025-08-28
+ORD1001,5,"Late delivery, unhappy",1,None,2025-08-01
+ORD1025,5,"Late delivery, unhappy",1,Wrong Item,2025-10-25
+ORD1069,5,"Delivered on time, good condition",1,None,2025-08-21
+ORD1118,4,Wrong item delivered,1,Other,2025-08-18
+ORD1004,5,Excellent service,1,None,2025-09-19
+ORD1089,4,Driver was helpful,0,None,2025-10-03
+ORD1170,5,Driver was helpful,1,None,2025-09-26
+ORD1022,5,Wrong item delivered,0,None,2025-08-28
+ORD1057,5,Package damaged,1,Damage,2025-08-12
+ORD1032,5,Package damaged,1,Delay,2025-09-01
+ORD1039,5,Driver was helpful,0,None,2025-09-12
+ORD1115,5,"Late delivery, unhappy",0,Delay,2025-08-31
+ORD1037,5,"Delivered on time, good condition",1,Delay,2025-10-22
+ORD1007,5,Driver was helpful,1,Wrong Item,2025-09-04
+ORD1168,4,Wrong item delivered,1,Other,2025-10-25
+ORD1129,5,"Delivered on time, good condition",1,Delay,2025-08-03
+ORD1006,5,"Late delivery, unhappy",0,Damage,2025-08-09
+ORD1077,5,"Late delivery, unhappy",1,Damage,2025-09-13
+ORD1148,5,Wrong item delivered,0,None,2025-09-25
+ORD1079,5,Driver was helpful,1,Damage,2025-08-24
+ORD1010,4,Driver was helpful,1,None,2025-09-01
+ORD1054,5,Driver was helpful,1,Damage,2025-08-26
+ORD1185,3,"Late delivery, unhappy",1,Other,2025-09-12
+ORD1126,4,Wrong item delivered,0,None,2025-10-07
+ORD1016,4,"Delivered on time, good condition",0,Damage,2025-10-22
+ORD1081,4,"Delivered on time, good condition",1,Wrong Item,2025-10-03
+ORD1141,4,Wrong item delivered,1,None,2025-09-11
+ORD1080,5,Driver was helpful,1,Delay,2025-09-20
+ORD1000,4,"Late delivery, unhappy",1,Wrong Item,2025-09-13
+ORD1097,5,Package damaged,1,Other,2025-10-04
+ORD1083,3,"Delivered on time, good condition",0,None,2025-08-05
+ORD1061,5,Wrong item delivered,0,None,2025-09-25
+ORD1103,5,Wrong item delivered,1,Delay,2025-08-13
+ORD1009,4,"Late delivery, unhappy",1,None,2025-09-23
+ORD1065,5,Package damaged,1,None,2025-09-19
+ORD1132,5,"Late delivery, unhappy",1,None,2025-09-04
+ORD1064,5,Package damaged,1,None,2025-10-05
+ORD1018,4,"Late delivery, unhappy",1,Delay,2025-10-09
+ORD1048,5,"Late delivery, unhappy",1,Delay,2025-09-24
+ORD1157,5,Package damaged,1,Delay,2025-08-17
+ORD1019,4,Excellent service,1,Damage,2025-10-15
+ORD1104,5,Wrong item delivered,1,None,2025-09-19
+ORD1101,4,"Late delivery, unhappy",1,None,2025-08-29
+ORD1162,5,Excellent service,1,None,2025-08-26
+ORD1179,3,"Late delivery, unhappy",1,None,2025-09-19
+ORD1182,2,Excellent service,1,None,2025-10-21
+ORD1196,5,"Late delivery, unhappy",1,None,2025-10-27
+ORD1160,5,Driver was helpful,1,None,2025-09-16
+ORD1139,5,"Late delivery, unhappy",1,None,2025-08-17
+ORD1049,5,Wrong item delivered,1,Delay,2025-10-26
+ORD1122,4,"Late delivery, unhappy",1,Delay,2025-08-10
+ORD1093,4,Excellent service,1,Wrong Item,2025-08-29
+ORD1005,3,"Delivered on time, good condition",1,Damage,2025-10-28
+ORD1003,5,Driver was helpful,1,Delay,2025-09-28
+ORD1120,4,"Delivered on time, good condition",1,None,2025-10-09
+ORD1121,5,Excellent service,1,Delay,2025-08-04
+ORD1143,1,Package damaged,1,None,2025-09-09
+ORD1046,3,Wrong item delivered,1,None,2025-09-29
+ORD1171,4,Excellent service,1,None,2025-10-03
+ORD1149,4,Driver was helpful,1,None,2025-09-08
+ORD1092,4,"Delivered on time, good condition",0,None,2025-10-28
+ORD1060,5,"Late delivery, unhappy",1,Delay,2025-10-05
+ORD1134,4,"Late delivery, unhappy",1,Damage,2025-10-14
+ORD1124,5,Excellent service,1,Damage,2025-09-03
+ORD1140,5,Excellent service,1,Delay,2025-08-29
+ORD1021,5,Package damaged,1,Delay,2025-09-16
+ORD1127,5,Excellent service,1,None,2025-10-16
+ORD1024,4,"Late delivery, unhappy",0,Damage,2025-09-25
+ORD1188,4,Wrong item delivered,1,Delay,2025-08-14
+ORD1125,4,Package damaged,1,None,2025-10-10
+ORD1187,5,"Late delivery, unhappy",0,None,2025-10-14
+ORD1173,5,"Late delivery, unhappy",1,Wrong Item,2025-10-18
+ORD1015,4,Package damaged,1,Delay,2025-08-16
+ORD1136,5,Package damaged,1,None,2025-10-18
+ORD1091,5,"Late delivery, unhappy",1,Delay,2025-09-06
+ORD1073,5,Package damaged,1,None,2025-07-31
+ORD1137,5,"Delivered on time, good condition",0,None,2025-09-01
+ORD1084,5,Excellent service,1,None,2025-09-21

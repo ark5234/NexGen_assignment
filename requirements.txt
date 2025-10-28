@@ -1,0 +1,7 @@
+streamlit>=1.22
+pandas>=2.0
+numpy>=1.25
+scikit-learn>=1.2
+plotly>=5.0
+reportlab>=3.6
+networkx>=3.0  # optional, used by the PDF generator script
