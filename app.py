@@ -214,6 +214,7 @@ st.markdown("This section trains a simple RandomForest to predict whether a deli
 model_cols = ["priority","order_value","distance_km","traffic_delay_mins","toll_cost","weather_impact_flag"]
 train_df = filtered.copy()
 train_df = train_df[train_df["delayed_flag"].notna()]
+auc = None  # Initialize to avoid unbound variable error
 
 if train_df.shape[0] < 30:
     st.warning("Not enough labeled delivery history in the filtered data to train a reliable model. Show demo metrics only.")
