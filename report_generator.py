@@ -198,9 +198,13 @@ def generate_pdf_report(filtered_df, datasets, kpis, model_metrics=None):
     story.append(Paragraph("High-Risk Order Analysis", heading_style))
     
     if not filtered_df.empty:
-        high_risk = filtered_df[filtered_df['delayed_flag'] == 1].nlargest(15, 'order_value')[
-            ['order_id', 'customer_id', 'priority', 'order_value', 'carrier', 'distance_km', 'delivery_cost']
-        ]
+        available_cols = ['order_id', 'priority', 'order_value', 'carrier', 'distance_km', 'delivery_cost']
+        available_cols = [col for col in available_cols if col in filtered_df.columns]
+        
+        if 'customer_segment' in filtered_df.columns:
+            available_cols.insert(1, 'customer_segment')
+        
+        high_risk = filtered_df[filtered_df['delayed_flag'] == 1].nlargest(15, 'order_value')[available_cols]
         
         if len(high_risk) > 0:
             story.append(Paragraph(f"Identified {len(high_risk)} critical high-value delayed orders requiring immediate attention:", subheading_style))
@@ -209,13 +213,13 @@ def generate_pdf_report(filtered_df, datasets, kpis, model_metrics=None):
             risk_data = [['Order ID', 'Customer', 'Priority', 'Value', 'Carrier', 'Distance', 'Cost']]
             for _, row in high_risk.iterrows():
                 risk_data.append([
-                    str(row['order_id'])[:8],
-                    str(row['customer_id'])[:8],
-                    str(row['priority']),
-                    f"₹{row['order_value']:.0f}",
-                    str(row['carrier'])[:10],
-                    f"{row['distance_km']:.0f}km",
-                    f"₹{row['delivery_cost']:.0f}"
+                    str(row.get('order_id', 'N/A'))[:8],
+                    str(row.get('customer_segment', 'N/A'))[:8],
+                    str(row.get('priority', 'N/A')),
+                    f"₹{row.get('order_value', 0):.0f}",
+                    str(row.get('carrier', 'N/A'))[:10],
+                    f"{row.get('distance_km', 0):.0f}km",
+                    f"₹{row.get('delivery_cost', 0):.0f}"
                 ])
             
             t_risk = Table(risk_data, colWidths=[1*inch, 0.9*inch, 0.8*inch, 0.9*inch, 1*inch, 0.8*inch, 0.8*inch])
