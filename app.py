@@ -4,6 +4,7 @@ import numpy as np
 import os
 from utils import load_datasets, preprocess_merge
 from datetime import datetime, date
+from report_generator import generate_pdf_report
 
 # ML
 from sklearn.ensemble import RandomForestClassifier
@@ -269,6 +270,63 @@ else:
 
         top_risk["recommended_action"] = top_risk.apply(recommend_action, axis=1)
         st.download_button("Download recommendations (CSV)", top_risk.to_csv(index=False), file_name="recommendations.csv")
+
+# PDF Report Generation
+st.header("Executive PDF Report")
+st.markdown("""
+Generate a comprehensive PDF report with:
+- Executive summary and KPIs
+- Detailed performance analytics
+- Priority-wise breakdown
+- Actionable recommendations
+- Next steps for optimization
+""")
+
+col1, col2 = st.columns([2, 1])
+
+with col1:
+    # Quick stats preview
+    quick_stats = pd.DataFrame({
+        'Metric': ['Total Orders', 'On-Time Rate', 'Avg Cost', 'CO2 Emissions', 'Delayed Orders'],
+        'Value': [
+            int(filtered.shape[0]),
+            f"{100*(1 - filtered['delayed_flag'].mean() if filtered['delayed_flag'].count()>0 else 0):.1f}%",
+            f"₹{filtered['delivery_cost'].mean():.2f}",
+            f"{filtered['co2_g_per_km_est'].sum()/1000:.1f} kg",
+            int(filtered['delayed_flag'].sum() if 'delayed_flag' in filtered.columns else 0)
+        ]
+    })
+    st.dataframe(quick_stats, use_container_width=True, hide_index=True)
+
+with col2:
+    if st.button("Generate PDF Report", use_container_width=True):
+        # Prepare KPIs
+        kpis = {
+            'total_orders': int(filtered.shape[0]),
+            'on_time_rate': 100*(1 - filtered['delayed_flag'].mean() if filtered['delayed_flag'].count()>0 else 0),
+            'avg_cost': filtered['delivery_cost'].mean(),
+            'co2_kg': filtered['co2_g_per_km_est'].sum()/1000,
+            'delayed_orders': int(filtered['delayed_flag'].sum() if 'delayed_flag' in filtered.columns else 0)
+        }
+        
+        # Add model metrics if model was trained
+        model_metrics = None
+        if train_df.shape[0] >= 30:
+            try:
+                model_metrics = {'auc': auc}
+            except:
+                pass
+        
+        # Generate PDF
+        pdf_buffer = generate_pdf_report(filtered, datasets, kpis, model_metrics)
+        
+        st.download_button(
+            label="Download Report (PDF)",
+            data=pdf_buffer,
+            file_name=f"NexGen_Logistics_Report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf",
+            mime="application/pdf"
+        )
+        st.success("✅ Report generated successfully!")
 
 # Order inspector
 st.header("Order inspector & what-if")
