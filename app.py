@@ -340,7 +340,7 @@ ord = filtered[filtered["order_id"]==order_sel].iloc[0]
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("### 📦 Order Details")
+    st.markdown("### Order Details")
     order_info = {
         "Order ID": ord.get("order_id", "N/A"),
         "Order Date": ord.get("order_date", "N/A"),
@@ -354,7 +354,7 @@ with col1:
     for key, value in order_info.items():
         st.markdown(f"**{key}:** {value}")
     
-    st.markdown("### 🚚 Route Information")
+    st.markdown("### Route Information")
     route_info = {
         "Origin": ord.get("origin", "N/A"),
         "Destination": ord.get("destination", "N/A"),
@@ -369,22 +369,22 @@ with col1:
         st.markdown(f"**{key}:** {value}")
 
 with col2:
-    st.markdown("### 📊 Delivery Performance")
+    st.markdown("### Delivery Performance")
     delivery_info = {
         "Carrier": ord.get("carrier", "N/A"),
         "Promised Date": ord.get("promised_date", "N/A"),
         "Actual Date": ord.get("actual_date", "N/A"),
         "Status": ord.get("status", "N/A"),
         "Delay (days)": f"{ord.get('delay_days', 0):.1f}",
-        "Delayed?": "⚠️ Yes" if ord.get("delayed_flag", False) else "✅ No",
+        "Delayed?": "WARNING: Yes" if ord.get("delayed_flag", False) else "OK: No",
         "Quality Issue": ord.get("quality_issue", "N/A"),
-        "Customer Rating": "⭐" * int(ord.get("customer_rating", 0)) if pd.notna(ord.get("customer_rating")) else "N/A"
+        "Customer Rating": f"{ord.get('customer_rating', 0):.1f}/5.0" if pd.notna(ord.get("customer_rating")) else "N/A"
     }
     
     for key, value in delivery_info.items():
         st.markdown(f"**{key}:** {value}")
     
-    st.markdown("### 💰 Cost Breakdown")
+    st.markdown("### Cost Breakdown")
     cost_info = {
         "Delivery Cost": f"₹{ord.get('delivery_cost', 0):.2f}",
         "Fuel Cost": f"₹{ord.get('fuel_cost', 0):.2f}",

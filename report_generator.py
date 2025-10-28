@@ -58,12 +58,12 @@ def generate_pdf_report(filtered_df, datasets, kpis, model_metrics=None):
     
     kpi_data = [
         ['Metric', 'Value', 'Target', 'Status'],
-        ['Total Orders', str(kpis.get('total_orders', 0)), 'N/A', 'ℹ'],
-        ['On-Time Rate', f"{kpis.get('on_time_rate', 0):.1f}%", '85%', '✓' if kpis.get('on_time_rate', 0) >= 85 else '✗'],
-        ['Avg Delivery Cost', f"₹{kpis.get('avg_cost', 0):.2f}", '₹300', '✓' if kpis.get('avg_cost', 0) <= 300 else '✗'],
-        ['Total CO2 (kg)', f"{kpis.get('co2_kg', 0):.1f}", 'Reduce 30%', 'ℹ'],
-        ['Delayed Orders', str(kpis.get('delayed_orders', 0)), '<15%', '✓' if (kpis.get('delayed_orders', 0) / max(kpis.get('total_orders', 1), 1)) < 0.15 else '✗'],
-        ['Revenue at Risk', f"₹{filtered_df[filtered_df['delayed_flag']==1]['order_value'].sum():.2f}" if not filtered_df.empty else '₹0', 'Minimize', 'ℹ'],
+        ['Total Orders', str(kpis.get('total_orders', 0)), 'N/A', 'Info'],
+        ['On-Time Rate', f"{kpis.get('on_time_rate', 0):.1f}%", '85%', 'Pass' if kpis.get('on_time_rate', 0) >= 85 else 'Fail'],
+        ['Avg Delivery Cost', f"₹{kpis.get('avg_cost', 0):.2f}", '₹300', 'Pass' if kpis.get('avg_cost', 0) <= 300 else 'Fail'],
+        ['Total CO2 (kg)', f"{kpis.get('co2_kg', 0):.1f}", 'Reduce 30%', 'Info'],
+        ['Delayed Orders', str(kpis.get('delayed_orders', 0)), '<15%', 'Pass' if (kpis.get('delayed_orders', 0) / max(kpis.get('total_orders', 1), 1)) < 0.15 else 'Fail'],
+        ['Revenue at Risk', f"₹{filtered_df[filtered_df['delayed_flag']==1]['order_value'].sum():.2f}" if not filtered_df.empty else '₹0', 'Minimize', 'Info'],
     ]
     
     t = Table(kpi_data, colWidths=[2*inch, 1.8*inch, 1.5*inch, 1*inch])
@@ -226,7 +226,7 @@ def generate_pdf_report(filtered_df, datasets, kpis, model_metrics=None):
                 ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
                 ('FONTSIZE', (0, 0), (-1, -1), 7),
                 ('BOTTOMPADDING', (0, 0), (-1, 0), 10),
-                ('BACKGROUND', (0, 1), (-1, -1), colors.Color(1, 0.9, 0.9)),
+                ('BACKGROUND', (0, 1), (-1, -1), colors.HexColor('#ffcccc')),
                 ('GRID', (0, 0), (-1, -1), 1, colors.black),
             ]))
             story.append(t_risk)
@@ -308,30 +308,30 @@ def generate_pdf_report(filtered_df, datasets, kpis, model_metrics=None):
     
     insights = []
     if kpis.get('on_time_rate', 100) < 80:
-        insights.append(f"🔴 CRITICAL: On-time delivery rate is {kpis.get('on_time_rate', 0):.1f}%, significantly below target of 85%")
+        insights.append(f"CRITICAL: On-time delivery rate is {kpis.get('on_time_rate', 0):.1f}%, significantly below target of 85%")
     elif kpis.get('on_time_rate', 100) < 85:
-        insights.append(f"🟡 WARNING: On-time delivery rate is {kpis.get('on_time_rate', 0):.1f}%, marginally below target of 85%")
+        insights.append(f"WARNING: On-time delivery rate is {kpis.get('on_time_rate', 0):.1f}%, marginally below target of 85%")
     else:
-        insights.append(f"🟢 POSITIVE: On-time delivery rate is {kpis.get('on_time_rate', 0):.1f}%, meeting or exceeding target")
+        insights.append(f"POSITIVE: On-time delivery rate is {kpis.get('on_time_rate', 0):.1f}%, meeting or exceeding target")
     
     if kpis.get('avg_cost', 0) > 300:
-        insights.append(f"💰 Cost optimization opportunity: Average delivery cost is ₹{kpis.get('avg_cost', 0):.2f}, above target of ₹300")
+        insights.append(f"Cost optimization opportunity: Average delivery cost is ₹{kpis.get('avg_cost', 0):.2f}, above target of ₹300")
     
     if not filtered_df.empty:
         high_value_delays = filtered_df[(filtered_df['delayed_flag']==1) & (filtered_df['order_value']>5000)]
         if len(high_value_delays) > 0:
-            insights.append(f"⚠️ Risk Alert: {len(high_value_delays)} high-value orders (>₹5000) are delayed, representing ₹{high_value_delays['order_value'].sum():.2f} in revenue at risk")
+            insights.append(f"Risk Alert: {len(high_value_delays)} high-value orders (>₹5000) are delayed, representing ₹{high_value_delays['order_value'].sum():.2f} in revenue at risk")
     
-    insights.append(f"🌍 Environmental impact: {kpis.get('co2_kg', 0):.1f} kg CO2 emissions tracked across all deliveries")
+    insights.append(f"Environmental impact: {kpis.get('co2_kg', 0):.1f} kg CO2 emissions tracked across all deliveries")
     
     if model_metrics and 'auc' in model_metrics:
         reliability = 'Excellent' if model_metrics['auc'] > 0.85 else 'High' if model_metrics['auc'] > 0.8 else 'Moderate'
-        insights.append(f"🤖 Predictive model AUC: {model_metrics['auc']:.3f} - Model reliability is {reliability}")
+        insights.append(f"Predictive model AUC: {model_metrics['auc']:.3f} - Model reliability is {reliability}")
     
     if not filtered_df.empty and 'distance_km' in filtered_df.columns:
         long_distance = filtered_df[filtered_df['distance_km'] > 500]
         if len(long_distance) > 0:
-            insights.append(f"📍 Long-haul logistics: {len(long_distance)} orders exceed 500km, requiring special attention for route optimization")
+            insights.append(f"Long-haul logistics: {len(long_distance)} orders exceed 500km, requiring special attention for route optimization")
     
     for insight in insights:
         story.append(Paragraph(insight, styles['Normal']))
@@ -359,12 +359,12 @@ def generate_pdf_report(filtered_df, datasets, kpis, model_metrics=None):
     
     story.append(Paragraph("Immediate Action Items", heading_style))
     action_items = [
-        "✓ Review and re-route all high-risk orders identified in this report within 24 hours",
-        "✓ Schedule carrier performance meetings with underperforming providers within 1 week",
-        "✓ Implement stricter SLA monitoring for Express and Priority orders",
-        "✓ Launch pilot program for route optimization software on top 5 routes by volume",
-        "✓ Establish weekly executive dashboard reviews to track KPI improvements",
-        "✓ Conduct cost-benefit analysis for EV fleet transition within 30 days"
+        "Review and re-route all high-risk orders identified in this report within 24 hours",
+        "Schedule carrier performance meetings with underperforming providers within 1 week",
+        "Implement stricter SLA monitoring for Express and Priority orders",
+        "Launch pilot program for route optimization software on top 5 routes by volume",
+        "Establish weekly executive dashboard reviews to track KPI improvements",
+        "Conduct cost-benefit analysis for EV fleet transition within 30 days"
     ]
     
     for item in action_items:
