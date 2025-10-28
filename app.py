@@ -163,15 +163,48 @@ else:
     st.plotly_chart(fig2d, use_container_width=True)
 
 st.markdown("---")
-st.subheader("Scatter filter & selection")
-min_dist = int(plot_df["distance_km"].min() or 0)
-max_dist = int(plot_df["distance_km"].max() or 0)
-if min_dist == max_dist:
-    min_dist, max_dist = 0, max_dist
-min_dist, max_dist = st.slider("Distance range (km)", min_dist, max_dist, (min_dist, max_dist))
-filtered_scatter = plot_df[(plot_df["distance_km"] >= min_dist) & (plot_df["distance_km"] <= max_dist)]
-st.write(f"Showing {len(filtered_scatter)} points after distance filter")
-st.dataframe(filtered_scatter[["order_id","origin","destination","priority","order_value","distance_km","delay_days"]].head(200))
+st.subheader("🎯 Scatter Filter & Selection")
+st.markdown("Filter and analyze orders by distance range")
+
+col1, col2, col3 = st.columns([2, 1, 1])
+
+with col1:
+    min_dist = int(plot_df["distance_km"].min() or 0)
+    max_dist = int(plot_df["distance_km"].max() or 0)
+    if min_dist == max_dist:
+        min_dist, max_dist = 0, max_dist
+    selected_range = st.slider("📏 Distance range (km)", min_dist, max_dist, (min_dist, max_dist), key="distance_slider")
+    min_dist, max_dist = selected_range
+
+with col2:
+    filtered_scatter = plot_df[(plot_df["distance_km"] >= min_dist) & (plot_df["distance_km"] <= max_dist)]
+    st.metric("Orders in Range", len(filtered_scatter))
+    st.metric("Avg Distance", f"{filtered_scatter['distance_km'].mean():.1f} km")
+
+with col3:
+    delayed_in_range = filtered_scatter[filtered_scatter["delayed_flag"] == True].shape[0] if "delayed_flag" in filtered_scatter.columns else 0
+    st.metric("Delayed Orders", delayed_in_range)
+    if len(filtered_scatter) > 0:
+        st.metric("Delay Rate", f"{(delayed_in_range/len(filtered_scatter)*100):.1f}%")
+
+st.markdown("### 📋 Filtered Orders")
+display_cols = ["order_id","origin","destination","priority","order_value","distance_km","delay_days"]
+available_cols = [col for col in display_cols if col in filtered_scatter.columns]
+
+st.dataframe(
+    filtered_scatter[available_cols].head(200),
+    use_container_width=True,
+    height=400,
+    column_config={
+        "order_id": st.column_config.TextColumn("Order ID", width="small"),
+        "origin": st.column_config.TextColumn("Origin", width="medium"),
+        "destination": st.column_config.TextColumn("Destination", width="medium"),
+        "priority": st.column_config.TextColumn("Priority", width="small"),
+        "order_value": st.column_config.NumberColumn("Order Value (₹)", format="₹%.2f"),
+        "distance_km": st.column_config.NumberColumn("Distance (km)", format="%.1f"),
+        "delay_days": st.column_config.NumberColumn("Delay (days)", format="%.1f")
+    }
+)
 
 st.subheader("On-time rate by carrier")
 if "carrier" in filtered.columns:
@@ -298,14 +331,78 @@ with col2:
         )
         st.success("✅ Report generated successfully!")
 
-st.header("Order inspector & what-if")
-order_sel = st.selectbox("Select order to inspect (from filtered set)", options=filtered["order_id"].tolist()[:200])
+st.header("🔍 Order Inspector & What-If Analysis")
+st.markdown("Inspect individual orders and simulate delivery scenarios")
+
+order_sel = st.selectbox("Select order to inspect (from filtered set)", options=filtered["order_id"].tolist()[:200], key="order_inspector")
 ord = filtered[filtered["order_id"]==order_sel].iloc[0]
-st.write(ord.to_dict())
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("### 📦 Order Details")
+    order_info = {
+        "Order ID": ord.get("order_id", "N/A"),
+        "Order Date": ord.get("order_date", "N/A"),
+        "Customer Segment": ord.get("customer_segment", "N/A"),
+        "Priority": ord.get("priority", "N/A"),
+        "Category": ord.get("category", "N/A"),
+        "Order Value": f"₹{ord.get('order_value', 0):.2f}",
+        "Special Handling": ord.get("special_handling", "N/A")
+    }
+    
+    for key, value in order_info.items():
+        st.markdown(f"**{key}:** {value}")
+    
+    st.markdown("### 🚚 Route Information")
+    route_info = {
+        "Origin": ord.get("origin", "N/A"),
+        "Destination": ord.get("destination", "N/A"),
+        "Distance": f"{ord.get('distance_km', 0):.1f} km",
+        "Fuel Consumption": f"{ord.get('fuel_liters', 0):.2f} L",
+        "Toll Cost": f"₹{ord.get('toll_cost', 0):.2f}",
+        "Traffic Delay": f"{ord.get('traffic_delay_mins', 0):.0f} mins",
+        "Weather Impact": "Yes" if ord.get("weather_impact_flag", 0) == 1 else "No"
+    }
+    
+    for key, value in route_info.items():
+        st.markdown(f"**{key}:** {value}")
+
+with col2:
+    st.markdown("### 📊 Delivery Performance")
+    delivery_info = {
+        "Carrier": ord.get("carrier", "N/A"),
+        "Promised Date": ord.get("promised_date", "N/A"),
+        "Actual Date": ord.get("actual_date", "N/A"),
+        "Status": ord.get("status", "N/A"),
+        "Delay (days)": f"{ord.get('delay_days', 0):.1f}",
+        "Delayed?": "⚠️ Yes" if ord.get("delayed_flag", False) else "✅ No",
+        "Quality Issue": ord.get("quality_issue", "N/A"),
+        "Customer Rating": "⭐" * int(ord.get("customer_rating", 0)) if pd.notna(ord.get("customer_rating")) else "N/A"
+    }
+    
+    for key, value in delivery_info.items():
+        st.markdown(f"**{key}:** {value}")
+    
+    st.markdown("### 💰 Cost Breakdown")
+    cost_info = {
+        "Delivery Cost": f"₹{ord.get('delivery_cost', 0):.2f}",
+        "Fuel Cost": f"₹{ord.get('fuel_cost', 0):.2f}",
+        "Labor Cost": f"₹{ord.get('labor_cost', 0):.2f}",
+        "Maintenance": f"₹{ord.get('maintenance_cost', 0):.2f}",
+        "Insurance": f"₹{ord.get('insurance_cost', 0):.2f}",
+        "Packaging": f"₹{ord.get('packaging_cost', 0):.2f}",
+        "Platform Fee": f"₹{ord.get('platform_fee', 0):.2f}",
+        "Cost per KM": f"₹{ord.get('cost_per_km', 0):.3f}",
+        "CO2 Estimate": f"{ord.get('co2_g_per_km_est', 0):.1f} g"
+    }
+    
+    for key, value in cost_info.items():
+        st.markdown(f"**{key}:** {value}")
 
 st.markdown("---")
-st.markdown("### Notes & next steps")
-st.markdown("- This is a prototype. With the real datasets we can improve model features (carrier history, vehicle assignment, route-level telemetry), run cross-validation, and produce costed action plans that trade-off delay reduction vs cost.")
+st.markdown("### 📝 Notes & Next Steps")
+st.info("💡 This prototype can be enhanced with carrier history analysis, vehicle assignment optimization, real-time GPS tracking, cross-validation, and cost-benefit trade-off models for delay reduction strategies.")
 
 st.sidebar.markdown("---")
 st.sidebar.write("Data files located at: ")
