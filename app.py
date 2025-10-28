@@ -5,8 +5,6 @@ import os
 from utils import load_datasets, preprocess_merge
 from datetime import datetime, date
 from report_generator import generate_pdf_report
-
-# ML
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score, classification_report
@@ -30,7 +28,6 @@ def load_and_prepare():
 
 datasets, df = load_and_prepare()
 
-# Sidebar filters
 st.sidebar.header("Filters")
 min_date = df["order_date"].min()
 max_date = df["order_date"].max()
@@ -43,22 +40,18 @@ priority = st.sidebar.multiselect("Priority", options=df["priority"].unique(), d
 warehouse = st.sidebar.multiselect("Origin Warehouse", options=df["origin"].unique(), default=list(df["origin"].unique()))
 carrier = st.sidebar.multiselect("Carrier", options=df["carrier"].dropna().unique() if "carrier" in df.columns else [], default=None)
 
-# Apply filters
 filtered = df.copy()
 if isinstance(date_range, (list, tuple)) and len(date_range) == 2:
     start, end = date_range
     filtered = filtered[(filtered["order_date"] >= pd.to_datetime(start)) & (filtered["order_date"] <= pd.to_datetime(end))]
 else:
-    # single date selected -> filter for that day
     try:
-        # convert single date to pandas Timestamp safely
         if isinstance(date_range, (datetime, date)):
             single = pd.Timestamp(date_range)
         else:
             single = pd.Timestamp(str(date_range))
         filtered = filtered[filtered["order_date"] == single]
     except Exception:
-        # if parsing fails, leave unfiltered
         pass
 if priority:
     filtered = filtered[filtered["priority"].isin(priority)]
@@ -76,26 +69,21 @@ col4.metric("Estimated CO2 (kg)", f"{(filtered['co2_g_per_km_est'].sum()/1000):.
 
 st.markdown("---")
 
-# Visualizations
 st.header("Visualizations")
 
 import plotly.express as px
 
-# 1) Delay distribution
 st.subheader("Delay distribution")
 fig1 = px.histogram(filtered, x="delay_days", nbins=40, title="Delay (days) distribution")
 st.plotly_chart(fig1, use_container_width=True)
 
-# 2) Cost breakdown (average by category)
 st.subheader("Average delivery cost by category")
 cost_by_cat = filtered.groupby("category")["delivery_cost"].mean().reset_index()
 fig2 = px.bar(cost_by_cat, x="category", y="delivery_cost", title="Avg delivery cost by product category")
 st.plotly_chart(fig2, use_container_width=True)
 
-# 3) Delay vs distance (2D / 3D scatter)
 st.subheader("Delay vs Distance")
 
-# Sidebar controls for the scatter
 st.sidebar.markdown("---")
 st.sidebar.subheader("Scatter controls")
 view_mode = st.sidebar.selectbox("View", ["3D", "2D"], index=0)
@@ -141,7 +129,6 @@ if "priority" in plot_df.columns:
 if size_field != "None" and size_field in plot_df.columns:
     if plot_df[size_field].notna().any():
         plot_df["_size_field"] = plot_df[size_field].fillna(plot_df[size_field].median() or 1.0)
-        # normalize size to [2, max_marker]
         s = plot_df["_size_field"].astype(float)
         if s.max() > s.min():
             s_scaled = 2 + (s - s.min()) / (s.max() - s.min()) * (max_marker - 2)
@@ -150,14 +137,12 @@ if size_field != "None" and size_field in plot_df.columns:
         plot_df["_size_scaled"] = s_scaled
 
 if view_mode == "3D":
-    # build z axis from selection
     if z_field in plot_df.columns:
         z_col = z_field
     else:
         z_col = "order_value"
     if size_field != "None" and "_size_scaled" in plot_df.columns:
         scatter_kwargs["size"] = "_size_scaled"
-    # add opacity via marker dict
     fig3 = px.scatter_3d(
         plot_df,
         x="distance_km",
@@ -167,11 +152,9 @@ if view_mode == "3D":
         hover_data=["order_id", "origin", "destination"],
         title=f"Delay vs Distance vs {z_col} (3D)",
     )
-    # update marker opacity and size
     fig3.update_traces(marker=dict(symbol='circle', opacity=opacity))
     st.plotly_chart(fig3, use_container_width=True)
 else:
-    # 2D scatter: x distance, y delay, color by priority, size by scaled marker
     if "_size_scaled" in plot_df.columns:
         fig2d = px.scatter(plot_df, x="distance_km", y="delay_days", color="priority", size="_size_scaled", hover_data=["order_id","origin","destination"], title="Delay vs Distance (2D)")
     else:
@@ -179,7 +162,6 @@ else:
     fig2d.update_traces(marker=dict(opacity=opacity))
     st.plotly_chart(fig2d, use_container_width=True)
 
-# Selection table: show selected points if any via Plotly selection is not trivial in Streamlit; provide a filter instead
 st.markdown("---")
 st.subheader("Scatter filter & selection")
 min_dist = int(plot_df["distance_km"].min() or 0)
@@ -191,10 +173,8 @@ filtered_scatter = plot_df[(plot_df["distance_km"] >= min_dist) & (plot_df["dist
 st.write(f"Showing {len(filtered_scatter)} points after distance filter")
 st.dataframe(filtered_scatter[["order_id","origin","destination","priority","order_value","distance_km","delay_days"]].head(200))
 
-# 4) On-time rate by carrier
 st.subheader("On-time rate by carrier")
 if "carrier" in filtered.columns:
-    # select the delayed_flag column explicitly to avoid the pandas future deprecation
     carrier_perf = (
         filtered.groupby("carrier")["delayed_flag"]
         .apply(lambda s: 1 - s.mean() if s.count() > 0 else np.nan)
@@ -207,20 +187,18 @@ else:
 
 st.markdown("---")
 
-# Predictive model
 st.header("Predictive Delay Model")
 st.markdown("This section trains a simple RandomForest to predict whether a delivery will be delayed (binary). Model is retrained when data/filter selection changes.")
 
 model_cols = ["priority","order_value","distance_km","traffic_delay_mins","toll_cost","weather_impact_flag"]
 train_df = filtered.copy()
 train_df = train_df[train_df["delayed_flag"].notna()]
-auc = None  # Initialize to avoid unbound variable error
+auc = None
 
 if train_df.shape[0] < 30:
     st.warning("Not enough labeled delivery history in the filtered data to train a reliable model. Show demo metrics only.")
 else:
     X = train_df[model_cols].copy()
-    # simple encoding
     X = pd.get_dummies(X, columns=["priority"], drop_first=True)
     y = train_df["delayed_flag"].astype(int)
 
@@ -231,22 +209,18 @@ else:
     auc = roc_auc_score(y_test, y_pred)
     st.write(f"AUC (test): {auc:.3f}")
 
-    # Feature importance
     importances = pd.Series(clf.feature_importances_, index=X_train.columns).sort_values(ascending=False)
     st.subheader("Feature importance")
     imp_df = importances.reset_index().rename(columns={"index": "feature", 0: "importance"})
-    # ensure consistent column name for plotly
     if "importance" not in imp_df.columns and imp_df.shape[1] >= 2:
         imp_df.columns = ["feature", "importance"]
     fig_imp = px.bar(imp_df, x="feature", y="importance", title="Feature importance")
     st.plotly_chart(fig_imp, use_container_width=True)
 
-    # Predict on current filtered unlabeled orders
     unlabeled = filtered[filtered["delayed_flag"].isna()].copy()
     if not unlabeled.empty:
         X_unl = unlabeled[model_cols]
         X_unl = pd.get_dummies(X_unl, columns=["priority"], drop_first=True)
-        # align columns
         for c in X_train.columns:
             if c not in X_unl.columns:
                 X_unl[c] = 0
@@ -256,7 +230,6 @@ else:
         top_risk = unlabeled.sort_values(by=["delay_risk_prob"], ascending=False).head(20)
         st.dataframe(top_risk[["order_id","origin","destination","priority","order_value","distance_km","delay_risk_prob"]])
 
-        # Recommendation engine: simple rules
         def recommend_action(row):
             actions = []
             if row["priority"] == "Express":
@@ -272,7 +245,6 @@ else:
         top_risk["recommended_action"] = top_risk.apply(recommend_action, axis=1)
         st.download_button("Download recommendations (CSV)", top_risk.to_csv(index=False), file_name="recommendations.csv")
 
-# PDF Report Generation
 st.header("Executive PDF Report")
 st.markdown("""
 Generate a comprehensive PDF report with:
@@ -301,7 +273,6 @@ with col1:
 
 with col2:
     if st.button("Generate PDF Report", use_container_width=True):
-        # Prepare KPIs
         kpis = {
             'total_orders': int(filtered.shape[0]),
             'on_time_rate': 100*(1 - filtered['delayed_flag'].mean() if filtered['delayed_flag'].count()>0 else 0),
@@ -310,7 +281,6 @@ with col2:
             'delayed_orders': int(filtered['delayed_flag'].sum() if 'delayed_flag' in filtered.columns else 0)
         }
         
-        # Add model metrics if model was trained
         model_metrics = None
         if train_df.shape[0] >= 30:
             try:
@@ -318,7 +288,6 @@ with col2:
             except:
                 pass
         
-        # Generate PDF
         pdf_buffer = generate_pdf_report(filtered, datasets, kpis, model_metrics)
         
         st.download_button(
@@ -329,7 +298,6 @@ with col2:
         )
         st.success("✅ Report generated successfully!")
 
-# Order inspector
 st.header("Order inspector & what-if")
 order_sel = st.selectbox("Select order to inspect (from filtered set)", options=filtered["order_id"].tolist()[:200])
 ord = filtered[filtered["order_id"]==order_sel].iloc[0]
