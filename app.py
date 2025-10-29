@@ -75,12 +75,12 @@ import plotly.express as px
 
 st.subheader("Delay distribution")
 fig1 = px.histogram(filtered, x="delay_days", nbins=40, title="Delay (days) distribution")
-st.plotly_chart(fig1, width='stretch')
+st.plotly_chart(fig1, use_container_width=True)
 
 st.subheader("Average delivery cost by category")
 cost_by_cat = filtered.groupby("category")["delivery_cost"].mean().reset_index()
 fig2 = px.bar(cost_by_cat, x="category", y="delivery_cost", title="Avg delivery cost by product category")
-st.plotly_chart(fig2, width='stretch')
+st.plotly_chart(fig2, use_container_width=True)
 
 st.subheader("Delay vs Distance")
 
@@ -153,14 +153,14 @@ if view_mode == "3D":
         title=f"Delay vs Distance vs {z_col} (3D)",
     )
     fig3.update_traces(marker=dict(symbol='circle', opacity=opacity))
-    st.plotly_chart(fig3, width='stretch')
+    st.plotly_chart(fig3, use_container_width=True)
 else:
     if "_size_scaled" in plot_df.columns:
         fig2d = px.scatter(plot_df, x="distance_km", y="delay_days", color="priority", size="_size_scaled", hover_data=["order_id","origin","destination"], title="Delay vs Distance (2D)")
     else:
         fig2d = px.scatter(plot_df, x="distance_km", y="delay_days", color="priority", hover_data=["order_id","origin","destination"], title="Delay vs Distance (2D)")
     fig2d.update_traces(marker=dict(opacity=opacity))
-    st.plotly_chart(fig2d, width='stretch')
+    st.plotly_chart(fig2d, use_container_width=True)
 
 st.markdown("---")
 st.subheader("🎯 Scatter Filter & Selection")
@@ -193,7 +193,7 @@ available_cols = [col for col in display_cols if col in filtered_scatter.columns
 
 st.dataframe(
     filtered_scatter[available_cols].head(200),
-    width='stretch',
+    use_container_width=True,
     height=400,
     column_config={
         "order_id": st.column_config.TextColumn("Order ID", width="small"),
@@ -214,7 +214,7 @@ if "carrier" in filtered.columns:
         .reset_index(name="on_time_rate")
     )
     fig4 = px.bar(carrier_perf.sort_values(by="on_time_rate", ascending=False), x="carrier", y="on_time_rate", title="Carrier on-time rate")
-    st.plotly_chart(fig4, width='stretch')
+    st.plotly_chart(fig4, use_container_width=True)
 else:
     st.info("No carrier data available in the current dataset.")
 
@@ -248,7 +248,7 @@ else:
     if "importance" not in imp_df.columns and imp_df.shape[1] >= 2:
         imp_df.columns = ["feature", "importance"]
     fig_imp = px.bar(imp_df, x="feature", y="importance", title="Feature importance")
-    st.plotly_chart(fig_imp, width='stretch')
+    st.plotly_chart(fig_imp, use_container_width=True)
 
     unlabeled = filtered[filtered["delayed_flag"].isna()].copy()
     if not unlabeled.empty:
@@ -301,10 +301,10 @@ with col1:
             str(int(filtered['delayed_flag'].sum() if 'delayed_flag' in filtered.columns else 0))
         ]
     })
-    st.dataframe(quick_stats, width='stretch', hide_index=True)
+    st.dataframe(quick_stats, use_container_width=True, hide_index=True)
 
 with col2:
-    if st.button("Generate PDF Report", width='stretch'):
+    if st.button("Generate PDF Report", use_container_width=True):
         kpis = {
             'total_orders': int(filtered.shape[0]),
             'on_time_rate': 100*(1 - filtered['delayed_flag'].mean() if filtered['delayed_flag'].count()>0 else 0),
