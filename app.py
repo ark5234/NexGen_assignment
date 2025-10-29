@@ -82,7 +82,34 @@ cost_by_cat = filtered.groupby("category")["delivery_cost"].mean().reset_index()
 fig2 = px.bar(cost_by_cat, x="category", y="delivery_cost", title="Avg delivery cost by product category")
 st.plotly_chart(fig2, use_container_width=True)
 
-st.subheader("Delay vs Distance")
+st.subheader("Delay vs Distance Analysis")
+
+tab1, tab2, tab3 = st.tabs(["Heatmap (Recommended)", "3D Scatter", "2D Scatter"])
+
+with tab1:
+    st.markdown("**Intuitive visualization showing delay patterns across distance ranges**")
+    
+    heatmap_data = filtered.copy()
+    heatmap_data['distance_bin'] = pd.cut(heatmap_data['distance_km'], bins=10, labels=[f"{int(i*20)}-{int((i+1)*20)}km" for i in range(10)])
+    heatmap_data['delay_bin'] = pd.cut(heatmap_data['delay_days'], bins=8, labels=[f"{int(i*2)}-{int((i+1)*2)}d" for i in range(8)])
+    
+    heatmap_pivot = heatmap_data.groupby(['distance_bin', 'delay_bin'], observed=True).size().reset_index(name='count')
+    heatmap_pivot_wide = heatmap_pivot.pivot(index='delay_bin', columns='distance_bin', values='count').fillna(0)
+    
+    fig_heatmap = px.imshow(
+        heatmap_pivot_wide,
+        labels=dict(x="Distance Range", y="Delay Range", color="Order Count"),
+        title="Delay Patterns by Distance Range (Darker = More Orders)",
+        color_continuous_scale="RdYlGn_r",
+        aspect="auto"
+    )
+    fig_heatmap.update_xaxes(side="bottom")
+    st.plotly_chart(fig_heatmap, use_container_width=True)
+    
+    st.info("💡 **How to read this**: Dark red areas show distance-delay combinations with many orders. Ideally, we want to see dark colors only in the low-delay rows (bottom).")
+
+with tab2:
+    st.markdown("**3D visualization for detailed multi-dimensional analysis**")
 
 st.sidebar.markdown("---")
 st.sidebar.subheader("Scatter controls")
@@ -154,13 +181,17 @@ if view_mode == "3D":
     )
     fig3.update_traces(marker=dict(symbol='circle', opacity=opacity))
     st.plotly_chart(fig3, use_container_width=True)
-else:
+    st.info("💡 **For analysts**: Rotate the 3D plot to explore relationships between distance, delay, and cost/value.")
+
+with tab3:
+    st.markdown("**2D visualization for detailed order inspection**")
     if "_size_scaled" in plot_df.columns:
         fig2d = px.scatter(plot_df, x="distance_km", y="delay_days", color="priority", size="_size_scaled", hover_data=["order_id","origin","destination"], title="Delay vs Distance (2D)")
     else:
         fig2d = px.scatter(plot_df, x="distance_km", y="delay_days", color="priority", hover_data=["order_id","origin","destination"], title="Delay vs Distance (2D)")
     fig2d.update_traces(marker=dict(opacity=opacity))
     st.plotly_chart(fig2d, use_container_width=True)
+    st.info("💡 **For detailed analysis**: Hover over points to see order details. Color indicates priority level.")
 
 st.markdown("---")
 st.subheader("🎯 Scatter Filter & Selection")
