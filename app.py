@@ -84,53 +84,193 @@ st.plotly_chart(fig2, use_container_width=True)
 
 st.subheader("Delay vs Distance Analysis")
 
-tab1, tab2, tab3 = st.tabs(["Heatmap (Recommended)", "3D Scatter", "2D Scatter"])
+binned_df = filtered.copy()
+if "distance_km" in binned_df.columns:
+    binned_df["distance_km"] = pd.to_numeric(binned_df["distance_km"], errors="coerce")
+else:
+    binned_df["distance_km"] = pd.Series([None] * len(binned_df), dtype=float)
+if "delay_days" in binned_df.columns:
+    binned_df["delay_days"] = pd.to_numeric(binned_df["delay_days"], errors="coerce")
+else:
+    binned_df["delay_days"] = pd.Series([None] * len(binned_df), dtype=float)
 
-with tab1:
+def _format_interval(interval, unit):
+    if pd.isna(interval):
+        return "Unknown"
+    left = getattr(interval, "left", None)
+    right = getattr(interval, "right", None)
+    if left is None or right is None or not np.isfinite(left) or not np.isfinite(right):
+        return "Unknown"
+    if abs(right - left) >= 1:
+        left_val = f"{left:.0f}"
+        right_val = f"{right:.0f}"
+    else:
+        left_val = f"{left:.1f}"
+        right_val = f"{right:.1f}"
+    suffix = "km" if unit == "km" else "d"
+    return f"{left_val}-{right_val} {suffix}"
+
+if binned_df["distance_km"].notna().any():
+    distance_valid = binned_df["distance_km"].dropna()
+    if distance_valid.min() == distance_valid.max():
+        distance_labels = [f"{distance_valid.iloc[0]:.0f} km"]
+        binned_df["distance_band_label"] = distance_labels[0]
+    else:
+        num_distance_bins = int(min(8, max(1, distance_valid.nunique())))
+        binned_df["distance_band"] = pd.cut(distance_valid, bins=num_distance_bins, include_lowest=True, duplicates="drop")
+        distance_categories = binned_df["distance_band"].cat.categories
+        distance_labels = [_format_interval(interval, "km") for interval in distance_categories]
+        label_map = {cat: label for cat, label in zip(distance_categories, distance_labels)}
+        binned_df["distance_band_label"] = binned_df["distance_band"].map(label_map)
+else:
+    distance_labels = ["Unknown"]
+    binned_df["distance_band_label"] = "Unknown"
+
+if binned_df["delay_days"].notna().any():
+    delay_valid = binned_df["delay_days"].dropna()
+    if delay_valid.min() == delay_valid.max():
+        delay_labels = [f"{delay_valid.iloc[0]:.0f} d"]
+        binned_df["delay_band_label"] = delay_labels[0]
+    else:
+        num_delay_bins = int(min(8, max(1, delay_valid.nunique())))
+        binned_df["delay_band"] = pd.cut(delay_valid, bins=num_delay_bins, include_lowest=True, duplicates="drop")
+        delay_categories = binned_df["delay_band"].cat.categories
+        delay_labels = [_format_interval(interval, "d") for interval in delay_categories]
+        label_map = {cat: label for cat, label in zip(delay_categories, delay_labels)}
+        binned_df["delay_band_label"] = binned_df["delay_band"].map(label_map)
+else:
+    delay_labels = ["Unknown"]
+    binned_df["delay_band_label"] = binned_df.get("delay_band_label", "Unknown")
+
+dist_series = binned_df["distance_band_label"]
+if isinstance(dist_series.dtype, pd.CategoricalDtype):
+    if "Unknown" not in dist_series.cat.categories:
+        dist_series = dist_series.cat.add_categories(["Unknown"])
+    dist_series = dist_series.fillna("Unknown")
+else:
+    dist_series = dist_series.fillna("Unknown").astype(str)
+binned_df["distance_band_label"] = dist_series
+
+delay_series = binned_df["delay_band_label"]
+if isinstance(delay_series.dtype, pd.CategoricalDtype):
+    if "Unknown" not in delay_series.cat.categories:
+        delay_series = delay_series.cat.add_categories(["Unknown"])
+    delay_series = delay_series.fillna("Unknown")
+else:
+    delay_series = delay_series.fillna("Unknown").astype(str)
+binned_df["delay_band_label"] = delay_series
+
+if "Unknown" in binned_df["distance_band_label"].astype(str).values and "Unknown" not in distance_labels:
+    distance_labels = [*distance_labels, "Unknown"]
+if "Unknown" in binned_df["delay_band_label"].astype(str).values and "Unknown" not in delay_labels:
+    delay_labels = [*delay_labels, "Unknown"]
+binned_df["distance_band_label"] = pd.Categorical(binned_df["distance_band_label"], categories=distance_labels, ordered=True)
+binned_df["delay_band_label"] = pd.Categorical(binned_df["delay_band_label"], categories=delay_labels, ordered=True)
+
+tab_heatmap, tab_avg_delay, tab_status_mix, tab3, tab4 = st.tabs([
+    "Heatmap (Recommended)",
+    "Avg Delay by Distance",
+    "On-Time vs Delayed",
+    "3D Scatter",
+    "2D Scatter",
+])
+
+with tab_heatmap:
     st.markdown("**Intuitive visualization showing delay patterns across distance ranges**")
-    
-    heatmap_data = filtered.copy()
-    heatmap_data['distance_bin'] = pd.cut(heatmap_data['distance_km'], bins=10, labels=[f"{int(i*20)}-{int((i+1)*20)}km" for i in range(10)])
-    heatmap_data['delay_bin'] = pd.cut(heatmap_data['delay_days'], bins=8, labels=[f"{int(i*2)}-{int((i+1)*2)}d" for i in range(8)])
-    
-    heatmap_pivot = heatmap_data.groupby(['distance_bin', 'delay_bin'], observed=True).size().reset_index(name='count')
-    heatmap_pivot_wide = heatmap_pivot.pivot(index='delay_bin', columns='distance_bin', values='count').fillna(0)
-    
-    fig_heatmap = px.imshow(
-        heatmap_pivot_wide,
-        labels=dict(x="Distance Range", y="Delay Range", color="Order Count"),
-        title="Delay Patterns by Distance Range (Darker = More Orders)",
-        color_continuous_scale="RdYlGn_r",
-        aspect="auto"
-    )
-    fig_heatmap.update_xaxes(side="bottom")
-    st.plotly_chart(fig_heatmap, use_container_width=True)
-    
-    st.info("💡 **How to read this**: Dark red areas show distance-delay combinations with many orders. Ideally, we want to see dark colors only in the low-delay rows (bottom).")
+    heatmap_source = binned_df.dropna(subset=["distance_band_label", "delay_band_label"])
+    if heatmap_source.empty:
+        st.info("Not enough data to build the heatmap for the selected filters.")
+    else:
+        heatmap_counts = (
+            heatmap_source.groupby(["delay_band_label", "distance_band_label"], observed=True)
+            .size()
+            .reset_index(name="count")
+        )
+        heatmap_matrix = (
+            heatmap_counts
+            .pivot(index="delay_band_label", columns="distance_band_label", values="count")
+            .reindex(index=delay_labels, columns=distance_labels)
+            .fillna(0)
+        )
+        fig_heatmap = px.imshow(
+            heatmap_matrix,
+            labels=dict(x="Distance Band", y="Delay Band", color="Order Count"),
+            title="Delay Patterns by Distance Band (Darker = More Orders)",
+            color_continuous_scale="RdYlGn_r",
+            aspect="auto",
+        )
+        fig_heatmap.update_xaxes(side="bottom")
+        st.plotly_chart(fig_heatmap, use_container_width=True)
+        st.info("💡 **How to read this**: Dark red areas show distance-delay combinations with many orders. Ideally, keep the higher counts near the bottom rows.")
 
-with tab2:
+with tab_avg_delay:
+    st.markdown("**Average delay per distance band for a quick business summary**")
+    avg_delay_df = (
+        binned_df.dropna(subset=["distance_band_label", "delay_days"])
+        .groupby("distance_band_label", observed=True)["delay_days"]
+        .mean()
+        .reindex(distance_labels)
+        .reset_index()
+        .rename(columns={"delay_days": "avg_delay_days"})
+    )
+    if avg_delay_df["avg_delay_days"].isna().all():
+        st.info("Not enough data to calculate average delays.")
+    else:
+        fig_avg_delay = px.bar(
+            avg_delay_df,
+            x="distance_band_label",
+            y="avg_delay_days",
+            text="avg_delay_days",
+            labels={"distance_band_label": "Distance Band", "avg_delay_days": "Average Delay (days)"},
+            title="Average Delay by Distance Band",
+        )
+        fig_avg_delay.update_traces(texttemplate="%{text:.2f}", textposition="outside")
+        fig_avg_delay.update_layout(yaxis_title="Average Delay (days)", xaxis_title="Distance Band")
+        st.plotly_chart(fig_avg_delay, use_container_width=True)
+        st.info("💡 **Idea**: Use this view for weekly reviews to spot distance segments that need process tweaks.")
+
+with tab_status_mix:
+    st.markdown("**Order mix of on-time vs delayed deliveries across distance bands**")
+    status_df = binned_df.copy()
+    if "delayed_flag" in status_df.columns:
+        status_series = status_df["delayed_flag"].fillna(False).astype(bool)
+        status_df["delivery_status"] = np.where(status_series, "Delayed", "On-Time")
+    else:
+        status_df["delivery_status"] = np.where(status_df["delay_days"].fillna(0) > 0, "Delayed", "On-Time")
+    status_counts = (
+        status_df.groupby(["distance_band_label", "delivery_status"], observed=True)
+        .size()
+        .reset_index(name="count")
+    )
+    if status_counts.empty:
+        st.info("Not enough data to show the on-time vs delayed breakdown.")
+    else:
+        status_counts["distance_band_label"] = pd.Categorical(status_counts["distance_band_label"], categories=distance_labels, ordered=True)
+        fig_mix = px.bar(
+            status_counts.sort_values(["distance_band_label", "delivery_status"]),
+            x="distance_band_label",
+            y="count",
+            color="delivery_status",
+            text="count",
+            labels={"distance_band_label": "Distance Band", "count": "Orders"},
+            title="On-Time vs Delayed Orders by Distance Band",
+            color_discrete_map={"On-Time": "#2ca02c", "Delayed": "#d62728"},
+        )
+        fig_mix.update_layout(barmode="stack")
+        st.plotly_chart(fig_mix, use_container_width=True)
+        st.info("💡 **Tip**: Darker red portions highlight where additional interventions may have the biggest payoff.")
+
+with tab3:
     st.markdown("**3D visualization for detailed multi-dimensional analysis**")
 
 st.sidebar.markdown("---")
 st.sidebar.subheader("Scatter controls")
-view_mode = st.sidebar.selectbox("View", ["3D", "2D"], index=0)
 z_field = st.sidebar.selectbox("Z-axis (for 3D)", ["order_value", "delivery_cost", "traffic_delay_mins"], index=0)
 size_field = st.sidebar.selectbox("Marker size field", ["delivery_cost", "order_value", "distance_km", "None"], index=0)
 opacity = st.sidebar.slider("Marker opacity", 0.1, 1.0, 0.8, 0.05)
 max_marker = st.sidebar.slider("Max marker size", 2, 30, 10)
 
-plot_df = filtered.copy()
-# Use explicit column checks and Series access so the type-checker understands we're passing a Series to to_numeric
-if "distance_km" in plot_df.columns:
-    plot_df["distance_km"] = pd.to_numeric(plot_df["distance_km"], errors="coerce")
-else:
-    plot_df["distance_km"] = pd.Series([None] * len(plot_df), dtype=float)
-
-if "delay_days" in plot_df.columns:
-    plot_df["delay_days"] = pd.to_numeric(plot_df["delay_days"], errors="coerce")
-else:
-    plot_df["delay_days"] = pd.Series([None] * len(plot_df), dtype=float)
-
+plot_df = binned_df.copy()
 if "order_value" in plot_df.columns:
     plot_df["order_value"] = pd.to_numeric(plot_df["order_value"], errors="coerce")
 else:
@@ -140,18 +280,6 @@ if "delivery_cost" in plot_df.columns:
     plot_df["delivery_cost"] = pd.to_numeric(plot_df["delivery_cost"], errors="coerce")
 else:
     plot_df["delivery_cost"] = pd.Series([None] * len(plot_df), dtype=float)
-
-# Build kwargs for scatter_3d and avoid passing size if it's all NaN (Plotly errors on NaN sizes)
-scatter_kwargs = dict(
-    data_frame=plot_df,
-    x="distance_km",
-    y="delay_days",
-    z="order_value",
-    hover_data=["order_id", "origin", "destination"],
-    title="Delay vs Distance vs Order Value (3D)",
-)
-if "priority" in plot_df.columns:
-    scatter_kwargs["color"] = "priority"
 
 if size_field != "None" and size_field in plot_df.columns:
     if plot_df[size_field].notna().any():
@@ -163,35 +291,55 @@ if size_field != "None" and size_field in plot_df.columns:
             s_scaled = pd.Series([max_marker] * len(s))
         plot_df["_size_scaled"] = s_scaled
 
-if view_mode == "3D":
-    if z_field in plot_df.columns:
-        z_col = z_field
-    else:
-        z_col = "order_value"
-    if size_field != "None" and "_size_scaled" in plot_df.columns:
-        scatter_kwargs["size"] = "_size_scaled"
-    fig3 = px.scatter_3d(
-        plot_df,
-        x="distance_km",
-        y="delay_days",
-        z=z_col,
-        color="priority" if "priority" in plot_df.columns else None,
-        hover_data=["order_id", "origin", "destination"],
-        title=f"Delay vs Distance vs {z_col} (3D)",
-    )
-    fig3.update_traces(marker=dict(symbol='circle', opacity=opacity))
-    st.plotly_chart(fig3, use_container_width=True)
-    st.info("💡 **For analysts**: Rotate the 3D plot to explore relationships between distance, delay, and cost/value.")
-
 with tab3:
-    st.markdown("**2D visualization for detailed order inspection**")
-    if "_size_scaled" in plot_df.columns:
-        fig2d = px.scatter(plot_df, x="distance_km", y="delay_days", color="priority", size="_size_scaled", hover_data=["order_id","origin","destination"], title="Delay vs Distance (2D)")
+    if plot_df.empty or plot_df[["distance_km", "delay_days"]].dropna(how="all").empty:
+        st.info("Not enough data to render the 3D scatter plot.")
     else:
-        fig2d = px.scatter(plot_df, x="distance_km", y="delay_days", color="priority", hover_data=["order_id","origin","destination"], title="Delay vs Distance (2D)")
-    fig2d.update_traces(marker=dict(opacity=opacity))
-    st.plotly_chart(fig2d, use_container_width=True)
-    st.info("💡 **For detailed analysis**: Hover over points to see order details. Color indicates priority level.")
+        z_col = z_field if z_field in plot_df.columns else "order_value"
+        scatter_kwargs = {
+            "data_frame": plot_df,
+            "x": "distance_km",
+            "y": "delay_days",
+            "z": z_col,
+            "hover_data": ["order_id", "origin", "destination"],
+            "title": f"Delay vs Distance vs {z_col} (3D)",
+        }
+        if "priority" in plot_df.columns:
+            scatter_kwargs["color"] = "priority"
+        if size_field != "None" and "_size_scaled" in plot_df.columns:
+            scatter_kwargs["size"] = "_size_scaled"
+        fig3 = px.scatter_3d(**scatter_kwargs)
+        fig3.update_traces(marker=dict(symbol="circle", opacity=opacity))
+        st.plotly_chart(fig3, use_container_width=True)
+        st.info("💡 **For analysts**: Rotate the 3D plot to explore relationships between distance, delay, and cost/value.")
+
+with tab4:
+    st.markdown("**2D visualization for detailed order inspection**")
+    if plot_df.empty or plot_df[["distance_km", "delay_days"]].dropna(how="all").empty:
+        st.info("Not enough data to render the 2D scatter plot.")
+    else:
+        if "_size_scaled" in plot_df.columns:
+            fig2d = px.scatter(
+                plot_df,
+                x="distance_km",
+                y="delay_days",
+                color="priority" if "priority" in plot_df.columns else None,
+                size="_size_scaled",
+                hover_data=["order_id", "origin", "destination"],
+                title="Delay vs Distance (2D)",
+            )
+        else:
+            fig2d = px.scatter(
+                plot_df,
+                x="distance_km",
+                y="delay_days",
+                color="priority" if "priority" in plot_df.columns else None,
+                hover_data=["order_id", "origin", "destination"],
+                title="Delay vs Distance (2D)",
+            )
+        fig2d.update_traces(marker=dict(opacity=opacity))
+        st.plotly_chart(fig2d, use_container_width=True)
+        st.info("💡 **For detailed analysis**: Hover over points to see order details. Color indicates priority level.")
 
 st.markdown("---")
 st.subheader("🎯 Scatter Filter & Selection")
