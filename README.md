@@ -1,354 +1,705 @@
-# NexGen Logistics AI Platform# NexGen Logistics AI Platform# NexGen Logistics AI Platform# 🚀 NexGen Logistics AI Platform# NexGen Logistics — Predictive Delivery Optimizer (Prototype)
+# NexGen Logistics AI Platform# NexGen Logistics AI Platform# NexGen Logistics AI Platform# NexGen Logistics AI Platform# 🚀 NexGen Logistics AI Platform# NexGen Logistics — Predictive Delivery Optimizer (Prototype)
 
 
 
-Advanced Predictive Intelligence for Modern Logistics
+**Advanced Predictive Intelligence for Modern Logistics**
 
 
 
-![Python](https://img.shields.io/badge/python-3.9+-blue.svg)**Advanced Predictive Intelligence for Modern Logistics**
+![Python](https://img.shields.io/badge/python-3.9+-blue.svg)Advanced Predictive Intelligence for Modern Logistics
 
-![Streamlit](https://img.shields.io/badge/streamlit-1.22+-red.svg)
+![Streamlit](https://img.shields.io/badge/streamlit-1.50+-red.svg)
 
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 
 
-This repository contains a Streamlit prototype that demonstrates a Predictive Delivery Optimizer for NexGen Logistics.[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)**Advanced Predictive Intelligence for Modern Logistics**
+A next-generation predictive delivery optimization system built with cutting-edge machine learning and interactive visualizations for NexGen Logistics.![Python](https://img.shields.io/badge/python-3.9+-blue.svg)**Advanced Predictive Intelligence for Modern Logistics**
 
 
 
-## Overview[![Streamlit](https://img.shields.io/badge/Streamlit-1.22%2B-FF4B4B)](https://streamlit.io/)
+---![Streamlit](https://img.shields.io/badge/streamlit-1.22+-red.svg)
 
 
 
-NexGen Logistics AI Platform is a next-generation predictive delivery optimization system built with cutting-edge machine learning and interactive visualizations. This platform transforms logistics operations through:[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+## Table of Contents![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 
 
-- **AI-Powered Predictions**: RandomForest ML models with 80%+ AUC for delay prediction
+- [Overview](#overview)
 
-- **Network Intelligence**: Interactive graph visualization of route networks
+- [Key Features](#key-features)
 
-- **Anomaly Detection**: Automated identification of high-risk orders using Isolation Forest---[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)<div align="center">This repository contains a Streamlit prototype that demonstrates a Predictive Delivery Optimizer for NexGen Logistics.
+- [Installation](#installation)This repository contains a Streamlit prototype that demonstrates a Predictive Delivery Optimizer for NexGen Logistics.[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)**Advanced Predictive Intelligence for Modern Logistics**
+
+- [Running the Application](#running-the-application)
+
+- [Project Structure](#project-structure)
+
+- [Technical Stack](#technical-stack)
+
+- [Requirements Compliance](#requirements-compliance)## Overview[![Streamlit](https://img.shields.io/badge/Streamlit-1.22%2B-FF4B4B)](https://streamlit.io/)
+
+- [Development](#development)
+
+- [License](#license)
+
+
+
+---NexGen Logistics AI Platform is a next-generation predictive delivery optimization system built with cutting-edge machine learning and interactive visualizations. This platform transforms logistics operations through:[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+
+
+## Overview
+
+
+
+NexGen Logistics AI Platform transforms logistics operations through intelligent automation and predictive analytics. The system provides:- **AI-Powered Predictions**: RandomForest ML models with 80%+ AUC for delay prediction
+
+
+
+- **AI-Powered Predictions**: RandomForest ML models with 80%+ AUC for delay prediction- **Network Intelligence**: Interactive graph visualization of route networks
+
+- **Network Intelligence**: Interactive graph visualization of route networks  
+
+- **Anomaly Detection**: Automated identification of high-risk orders using Isolation Forest- **Anomaly Detection**: Automated identification of high-risk orders using Isolation Forest---[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)<div align="center">This repository contains a Streamlit prototype that demonstrates a Predictive Delivery Optimizer for NexGen Logistics.
 
 - **Executive Reporting**: One-click PDF generation with comprehensive analytics
 
-- **Real-time Insights**: Dynamic filtering and what-if scenario analysis
+- **Real-time Insights**: Dynamic filtering and what-if scenario analysis- **Executive Reporting**: One-click PDF generation with comprehensive analytics
 
 
 
-## Features## Overview[![Streamlit](https://img.shields.io/badge/Streamlit-1.22%2B-FF4B4B)](https://streamlit.io/)
+---- **Real-time Insights**: Dynamic filtering and what-if scenario analysis
 
 
 
-### Interactive Filters
-
-- Date range, priority, carrier selection
-
-- Product category and customer segment filteringNexGen Logistics AI Platform is a next-generation predictive delivery optimization system built with cutting-edge machine learning and interactive visualizations. This platform transforms logistics operations through:[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-
-- Real-time data updates
+## Key Features
 
 
+
+### Interactive Filters## Features## Overview[![Streamlit](https://img.shields.io/badge/Streamlit-1.22%2B-FF4B4B)](https://streamlit.io/)
+
+- Date range selection with calendar interface
+
+- Priority, carrier, and category multi-select
+
+- Customer segment filtering
+
+- Real-time data updates on filter changes### Interactive Filters
+
+
+
+### 8+ Visualizations- Date range, priority, carrier selection
+
+- Delay distribution histograms
+
+- Priority-based cost analysis- Product category and customer segment filteringNexGen Logistics AI Platform is a next-generation predictive delivery optimization system built with cutting-edge machine learning and interactive visualizations. This platform transforms logistics operations through:[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+- 3D scatter plots (Distance vs Delay vs Cost)
+
+- Carrier performance bar charts- Real-time data updates
+
+- Route network graphs with networkx
+
+- Time-series trend analysis
+
+- Anomaly detection plots
 
 ### 8+ Visualizations
 
-- Delay distribution histograms- **AI-Powered Predictions**: RandomForest ML models with 80%+ AUC for delay prediction
+### Machine Learning Models
 
-- Priority-based cost analysis
+- RandomForest classifier for delay prediction- Delay distribution histograms- **AI-Powered Predictions**: RandomForest ML models with 80%+ AUC for delay prediction
 
-- 3D scatter plots (Distance vs Delay vs Cost)- **Network Intelligence**: Interactive graph visualization of route networks
+- Feature importance analysis and visualization
 
-- Carrier performance bar charts
+- Model performance metrics (AUC, accuracy, precision)- Priority-based cost analysis
 
-- Route network graphs- **Anomaly Detection**: Automated identification of high-risk orders using Isolation Forest---**Advanced Predictive Intelligence for Modern Logistics**What you get:
+- Risk probability scoring for each order
 
-- Time-series trend analysis
-
-- Anomaly detection plots- **Executive Reporting**: One-click PDF report generation with comprehensive analytics
+- Isolation Forest for anomaly detection- 3D scatter plots (Distance vs Delay vs Cost)- **Network Intelligence**: Interactive graph visualization of route networks
 
 
 
-### ML Predictions- **Real-Time Dashboards**: Dynamic KPIs with custom filtering and drill-down capabilities
+### Tabbed Interface- Carrier performance bar charts
 
-- RandomForest classifier for delay prediction
+- **Analytics**: Interactive visualizations and KPI dashboard
 
-- Feature importance analysis
+- **Predictions**: ML model results and feature importance- Route network graphs- **Anomaly Detection**: Automated identification of high-risk orders using Isolation Forest---**Advanced Predictive Intelligence for Modern Logistics**What you get:
 
-- Model performance metrics (AUC, accuracy)
+- **Network**: Route network graph visualization
+
+- **Reporting**: PDF report generation and CSV exports- Time-series trend analysis
+
+
+
+### Download Features- Anomaly detection plots- **Executive Reporting**: One-click PDF report generation with comprehensive analytics
+
+- **PDF Reports**: Comprehensive executive reports with:
+
+  - Executive summary with KPIs
+
+  - Carrier performance analysis
+
+  - Route efficiency metrics### ML Predictions- **Real-Time Dashboards**: Dynamic KPIs with custom filtering and drill-down capabilities
+
+  - Priority-based breakdowns
+
+  - High-risk order identification- RandomForest classifier for delay prediction
+
+  - Environmental impact assessment
+
+  - Cost breakdown analysis- Feature importance analysis
+
+  - Strategic insights and recommendations
+
+  - Immediate action items- Model performance metrics (AUC, accuracy)
+
+- **CSV Exports**: High-risk orders and filtered data
 
 - Risk probability scoring## Key Features## Overview- A Streamlit app (`app.py`) that loads the 7 CSVs in `./data/` and builds merged datasets.
 
+---
 
+
+
+## Installation
 
 ### Tabbed Interface
 
-- Organized navigation across Analytics, Predictions, Network, and Reporting sections
+### Prerequisites
 
-- Order Inspector for detailed order analysis### Machine Learning & AI
+- Python 3.9 or higher- Organized navigation across Analytics, Predictions, Network, and Reporting sections
 
-- What-if scenario simulator
+- pip package manager
 
-
-
-### Download Features
-
-- PDF executive reports with KPIs, insights, and recommendations- **Predictive Modeling**: RandomForest classifier trained on order, route, and performance dataNexGen Logistics AI Platform is a next-generation predictive delivery optimization system built with cutting-edge machine learning and interactive visualizations. This platform transforms logistics operations through:[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)- If the real CSVs are missing, the app creates realistic synthetic data for demo purposes.
-
-- CSV export for high-risk orders
-
-- Comprehensive analytics in downloadable format- **Feature Importance Analysis**: Identifies key delay drivers (distance, traffic, weather, priority)
+- Git (optional, for cloning)- Order Inspector for detailed order analysis### Machine Learning & AI
 
 
 
-## Installation- **Anomaly Detection**: Isolation Forest algorithm flags outlier orders requiring immediate attention
+### Setup Steps- What-if scenario simulator
 
 
 
-### Prerequisites- **Risk Scoring**: Probability-based risk assessment for proactive intervention
-
-- Python 3.9 or higher
-
-- pip package manager- **AI-Powered Predictions**: RandomForest ML models with 80%+ AUC for delay prediction[![Streamlit](https://img.shields.io/badge/Streamlit-1.22%2B-FF4B4B)](https://streamlit.io/)- A simple RandomForest model to predict delivery delays and a rule-based recommendation engine for at-risk orders.
-
-
-
-### Setup Instructions### Advanced Visualizations
-
-
-
-1. Clone the repository:- **Network Intelligence**: Interactive graph visualization of route networks
+1. **Clone or download the repository**
 
 ```bash
 
-git clone https://github.com/ark5234/NexGen_assignment.git- **3D Scatter Analysis**: Multi-dimensional delay visualization with customizable axes
+git clone https://github.com/ark5234/NexGen_assignment.git### Download Features
 
-cd NexGen_assignment
+cd NexGen_assignment/nexgen_logistics
 
-```- **Network Graphs**: Interactive route network using NetworkX and Plotly- **Anomaly Detection**: Automated identification of high-risk orders using Isolation Forest[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)- Visualizations (histogram, bar chart, scatter, feature importance) and filters.
+```- PDF executive reports with KPIs, insights, and recommendations- **Predictive Modeling**: RandomForest classifier trained on order, route, and performance dataNexGen Logistics AI Platform is a next-generation predictive delivery optimization system built with cutting-edge machine learning and interactive visualizations. This platform transforms logistics operations through:[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)- If the real CSVs are missing, the app creates realistic synthetic data for demo purposes.
 
 
 
-2. Create and activate virtual environment:- **Trend Analysis**: Time-series performance tracking with animated controls
+2. **Create virtual environment**- CSV export for high-risk orders
 
 ```bash
 
-python -m venv .venv- **Heatmaps & Charts**: Comprehensive visual analytics across all KPIs- **Executive Reporting**: One-click PDF report generation with comprehensive analytics
+# Windows PowerShell- Comprehensive analytics in downloadable format- **Feature Importance Analysis**: Identifies key delay drivers (distance, traffic, weather, priority)
 
-.venv\Scripts\activate  # Windows
+python -m venv .venv
 
-source .venv/bin/activate  # Linux/Mac
+
+
+# Linux/Mac
+
+python3 -m venv .venv## Installation- **Anomaly Detection**: Isolation Forest algorithm flags outlier orders requiring immediate attention
 
 ```
 
-### Reporting & Export- **Real-Time Dashboards**: Dynamic KPIs with custom filtering and drill-down capabilities- `generate_brief_pdf.py` script to generate a PDF innovation brief from the included markdown.
 
-3. Install dependencies:
 
-```bash
+3. **Activate virtual environment**
+
+```bash### Prerequisites- **Risk Scoring**: Probability-based risk assessment for proactive intervention
+
+# Windows PowerShell
+
+.\.venv\Scripts\Activate.ps1- Python 3.9 or higher
+
+
+
+# Windows Command Prompt- pip package manager- **AI-Powered Predictions**: RandomForest ML models with 80%+ AUC for delay prediction[![Streamlit](https://img.shields.io/badge/Streamlit-1.22%2B-FF4B4B)](https://streamlit.io/)- A simple RandomForest model to predict delivery delays and a rule-based recommendation engine for at-risk orders.
+
+.venv\Scripts\activate.bat
+
+
+
+# Linux/Mac
+
+source .venv/bin/activate### Setup Instructions### Advanced Visualizations
+
+```
+
+
+
+4. **Install dependencies**
+
+```bash1. Clone the repository:- **Network Intelligence**: Interactive graph visualization of route networks
 
 pip install -r requirements.txt
 
-```- **PDF Report Generation**: Professional executive reports with ReportLab
+``````bash
 
 
 
-4. Run the application:- **CSV Exports**: Download high-risk orders and recommendations
+---git clone https://github.com/ark5234/NexGen_assignment.git- **3D Scatter Analysis**: Multi-dimensional delay visualization with customizable axes
+
+
+
+## Running the Applicationcd NexGen_assignment
+
+
+
+### Quick Start (Recommended)```- **Network Graphs**: Interactive route network using NetworkX and Plotly- **Anomaly Detection**: Automated identification of high-risk orders using Isolation Forest[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)- Visualizations (histogram, bar chart, scatter, feature importance) and filters.
+
+
+
+**Option 1: From nexgen_logistics directory**
+
+```powershell
+
+# Make sure you're in the project directory2. Create and activate virtual environment:- **Trend Analysis**: Time-series performance tracking with animated controls
+
+cd c:\path\to\nexgen_logistics
 
 ```bash
 
+# Activate virtual environment (Windows PowerShell)
+
+.\.venv\Scripts\Activate.ps1python -m venv .venv- **Heatmaps & Charts**: Comprehensive visual analytics across all KPIs- **Executive Reporting**: One-click PDF report generation with comprehensive analytics
+
+
+
+# Run Streamlit.venv\Scripts\activate  # Windows
+
+streamlit run app.py
+
+```source .venv/bin/activate  # Linux/Mac
+
+
+
+**Option 2: Using Python module syntax**```
+
+```powershell
+
+# From nexgen_logistics directory with venv activated### Reporting & Export- **Real-Time Dashboards**: Dynamic KPIs with custom filtering and drill-down capabilities- `generate_brief_pdf.py` script to generate a PDF innovation brief from the included markdown.
+
+.\.venv\Scripts\python.exe -m streamlit run app.py
+
+```3. Install dependencies:
+
+
+
+**Option 3: Using absolute paths (if activation fails)**```bash
+
+```powershell
+
+# Run directly with full pathspip install -r requirements.txt
+
+c:\path\to\nexgen_logistics\.venv\Scripts\streamlit.exe run c:\path\to\nexgen_logistics\app.py
+
+``````- **PDF Report Generation**: Professional executive reports with ReportLab
+
+
+
+### Important Notes
+
+
+
+- **Directory**: Always run from the `nexgen_logistics` folder (where `app.py` is located)4. Run the application:- **CSV Exports**: Download high-risk orders and recommendations
+
+- **Virtual Environment**: Use the `.venv` folder inside `nexgen_logistics`, NOT the parent folder
+
+- **URL**: The app will launch at `http://localhost:8501````bash
+
+- **Data**: CSV files in `data/` folder are auto-generated if missing
+
 streamlit run app.py- **Custom Styling**: Gradient headers, branded colors, and polished UI## Key Features[Live Demo](#usage) • [Features](#-key-features) • [Installation](#-installation) • [Screenshots](#-screenshots)
+
+### Troubleshooting
 
 ```
 
+**Problem**: `No module named streamlit`
 
+```powershell
 
-The app will automatically launch at `http://localhost:8501`
+# Solution: Use the correct venv
 
-### User Experience
+cd nexgen_logisticsThe app will automatically launch at `http://localhost:8501`
+
+.\.venv\Scripts\Activate.ps1
+
+pip install -r requirements.txt### User Experience
+
+```
 
 ## Project Structure
 
+**Problem**: `File does not exist: app.py`
 
+```powershell
+
+# Solution: Make sure you're in the nexgen_logistics directory
+
+cd nexgen_logistics```
+
+streamlit run app.py
+
+```nexgen_logistics/- **Custom CSS Styling**: Modern gradient design with purple/blue theme### Machine Learning & AIHow to run (Windows PowerShell):
+
+
+
+**Problem**: Execution policy error on Windows├── app.py                    # Main Streamlit application
+
+```powershell
+
+# Solution: Run PowerShell as Administrator├── utils.py                  # Data loading and preprocessing utilities- **Responsive Layout**: Wide layout optimized for large datasets
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+```├── report_generator.py       # PDF report generation module
+
+
+
+---├── requirements.txt          # Python dependencies- **Interactive Filters**: Date range, priority, warehouse, carrier, anomaly toggles- **Predictive Modeling**: RandomForest classifier trained on order, route, and performance data
+
+
+
+## Project Structure├── .gitignore               # Git ignore patterns
+
+
+
+```├── README.md                # This file- **Tabbed Interface**: Organized navigation (Analytics, AI Predictions, Network, Reports)
+
+nexgen_logistics/
+
+├── .venv/                      # Virtual environment (local only)└── data/                    # CSV datasets (auto-generated if missing)
+
+├── data/                       # CSV datasets (auto-generated)
+
+│   ├── orders.csv    ├── orders.csv           # 200 order records- **Feature Importance Analysis**: Identifies key delay drivers (distance, traffic, weather, priority)</div>
+
+│   ├── delivery_performance.csv
+
+│   ├── routes_distance.csv    ├── delivery_performance.csv  # Delivery metrics and ratings
+
+│   ├── vehicle_fleet.csv
+
+│   ├── warehouse_inventory.csv    ├── routes_distance.csv  # Route information and traffic data## Installation
+
+│   ├── customer_feedback.csv
+
+│   └── cost_breakdown.csv    ├── vehicle_fleet.csv    # Fleet capacity and fuel efficiency
+
+├── app.py                      # Main Streamlit application (410 lines)
+
+├── utils.py                    # Data loading utilities (277 lines)    ├── warehouse_inventory.csv  # Stock levels and turnover- **Anomaly Detection**: Isolation Forest algorithm flags outlier orders requiring immediate attention
+
+├── report_generator.py         # PDF generation module (381 lines)
+
+├── requirements.txt            # Python dependencies    ├── customer_feedback.csv    # Ratings and feedback
+
+├── .gitignore                  # Git ignore patterns
+
+└── README.md                   # This file    └── cost_breakdown.csv   # Detailed cost components### Prerequisites
 
 ```
 
-nexgen_logistics/- **Custom CSS Styling**: Modern gradient design with purple/blue theme### Machine Learning & AIHow to run (Windows PowerShell):
-
-├── app.py                    # Main Streamlit application
-
-├── utils.py                  # Data loading and preprocessing utilities- **Responsive Layout**: Wide layout optimized for large datasets
-
-├── report_generator.py       # PDF report generation module
-
-├── requirements.txt          # Python dependencies- **Interactive Filters**: Date range, priority, warehouse, carrier, anomaly toggles- **Predictive Modeling**: RandomForest classifier trained on order, route, and performance data
-
-├── .gitignore               # Git ignore patterns
-
-├── README.md                # This file- **Tabbed Interface**: Organized navigation (Analytics, AI Predictions, Network, Reports)
-
-└── data/                    # CSV datasets (auto-generated if missing)
-
-    ├── orders.csv           # 200 order records- **Feature Importance Analysis**: Identifies key delay drivers (distance, traffic, weather, priority)</div>
-
-    ├── delivery_performance.csv  # Delivery metrics and ratings
-
-    ├── routes_distance.csv  # Route information and traffic data## Installation
-
-    ├── vehicle_fleet.csv    # Fleet capacity and fuel efficiency
-
-    ├── warehouse_inventory.csv  # Stock levels and turnover- **Anomaly Detection**: Isolation Forest algorithm flags outlier orders requiring immediate attention
-
-    ├── customer_feedback.csv    # Ratings and feedback
-
-    └── cost_breakdown.csv   # Detailed cost components### Prerequisites
-
 ```
+
+### File Descriptions
 
 - **Risk Scoring**: Probability-based risk assessment for proactive intervention1. Create a venv and install requirements
 
-## User Experience
+- **app.py**: Main dashboard with filters, visualizations, ML predictions, and UI
 
-- Python 3.9 or higher
+- **utils.py**: Data loading, preprocessing, synthetic data generation## User Experience
+
+- **report_generator.py**: PDF report creation with ReportLab
+
+- **requirements.txt**: 7 core dependencies (streamlit, pandas, numpy, scikit-learn, plotly, networkx, reportlab)- Python 3.9 or higher
+
+- **data/**: 7 CSV files with 200 orders and related logistics data
 
 ### Custom CSS Styling
 
+---
+
 - Modern gradient design with purple/blue theme- pip package manager
-
-- Responsive layout with optimized spacing
-
-- Professional typography and color scheme- Git (for cloning)
-
-
-
-### Interactive Controls### Advanced Visualizations---
-
-- Date pickers with calendar interface
-
-- Multi-select dropdowns for filters### Quick Start
-
-- Sliders for distance-based filtering
-
-- Toggle buttons for display options- **3D Scatter Analysis**: Multi-dimensional delay visualization with customizable axes
-
-
-
-### Performance Metrics```bash
-
-- Cached data loading for faster response
-
-- Efficient data processing with pandas# Clone the repository- **Network Graphs**: Interactive route network using NetworkX and Plotly```powershell
-
-- Optimized visualizations with plotly
-
-git clone https://github.com/ark5234/NexGen_assignment.git
 
 ## Technical Stack
 
-cd NexGen_assignment- **Trend Analysis**: Time-series performance tracking with animated controls
+- Responsive layout with optimized spacing
 
-- **Frontend**: Streamlit 1.22+
+| Component | Technology | Version | Purpose |
 
-- **Data Processing**: pandas, numpy
+|-----------|-----------|---------|---------|- Professional typography and color scheme- Git (for cloning)
 
-- **Machine Learning**: scikit-learn (RandomForest, IsolationForest)
+| Frontend | Streamlit | 1.50+ | Web dashboard framework |
 
-- **Visualization**: plotly, networkx# Create virtual environment (recommended)- **Heatmaps & Charts**: Comprehensive visual analytics across all KPIs## 📋 Overviewpython -m venv .venv
+| Data Processing | pandas | 2.3+ | Data manipulation |
 
-- **Reporting**: reportlab
+| Data Processing | numpy | 2.3+ | Numerical operations |
 
-- **Language**: Python 3.9+python -m venv .venv
+| Machine Learning | scikit-learn | 1.7+ | RandomForest, IsolationForest |### Interactive Controls### Advanced Visualizations---
+
+| Visualization | plotly | 6.3+ | Interactive charts |
+
+| Network Graphs | networkx | 3.5+ | Route visualization |- Date pickers with calendar interface
+
+| PDF Generation | reportlab | 4.4+ | Executive reports |
+
+| Language | Python | 3.13+ | Core programming |- Multi-select dropdowns for filters### Quick Start
 
 
 
-## Requirements Compliance
+---- Sliders for distance-based filtering
 
 
 
-### Dataset Coverage# Activate virtual environment
+## Requirements Compliance- Toggle buttons for display options- **3D Scatter Analysis**: Multi-dimensional delay visualization with customizable axes
 
-- Orders: 200 records with customer segments, priorities, categories
 
-- Delivery Performance: On-time rates, delays, quality metrics.venv\Scripts\activate  # Windows### Reporting & Export.\.venv\Scripts\Activate.ps1
+
+### Dataset Coverage (7 CSVs, 200+ Records)
+
+
+
+1. **orders.csv**: 200 records### Performance Metrics```bash
+
+   - Order ID, date, customer segment, priority, category
+
+   - Order value, origin, destination, special handling- Cached data loading for faster response
+
+
+
+2. **delivery_performance.csv**: Delivery metrics- Efficient data processing with pandas# Clone the repository- **Network Graphs**: Interactive route network using NetworkX and Plotly```powershell
+
+   - Carrier, promised/actual dates, status, delays
+
+   - Quality issues, customer ratings- Optimized visualizations with plotly
+
+
+
+3. **routes_distance.csv**: Geographic datagit clone https://github.com/ark5234/NexGen_assignment.git
+
+   - Route information, distances, traffic patterns
+
+   - Weather impact, fuel consumption## Technical Stack
+
+
+
+4. **vehicle_fleet.csv**: Fleet managementcd NexGen_assignment- **Trend Analysis**: Time-series performance tracking with animated controls
+
+   - Vehicle capacity, fuel efficiency
+
+   - Maintenance schedules- **Frontend**: Streamlit 1.22+
+
+
+
+5. **warehouse_inventory.csv**: Stock management- **Data Processing**: pandas, numpy
+
+   - Inventory levels, turnover rates
+
+   - Product availability- **Machine Learning**: scikit-learn (RandomForest, IsolationForest)
+
+
+
+6. **customer_feedback.csv**: Satisfaction metrics- **Visualization**: plotly, networkx# Create virtual environment (recommended)- **Heatmaps & Charts**: Comprehensive visual analytics across all KPIs## 📋 Overviewpython -m venv .venv
+
+   - Ratings, recommendations
+
+   - Issue categories, feedback text- **Reporting**: reportlab
+
+
+
+7. **cost_breakdown.csv**: Financial analysis- **Language**: Python 3.9+python -m venv .venv
+
+   - Base rates, fuel surcharges, tolls
+
+   - Labor, maintenance, insurance, platform fees
+
+
+
+### Visualization Requirements (8+ Charts)## Requirements Compliance
+
+
+
+1. Delay distribution histogram
+
+2. Priority-based cost bar chart
+
+3. 3D scatter plot (Distance vs Delay vs Cost)### Dataset Coverage# Activate virtual environment
+
+4. 2D scatter plot with size/color encoding
+
+5. Carrier on-time rate bar chart- Orders: 200 records with customer segments, priorities, categories
+
+6. Route network graph
+
+7. Time-series trend analysis- Delivery Performance: On-time rates, delays, quality metrics.venv\Scripts\activate  # Windows### Reporting & Export.\.venv\Scripts\Activate.ps1
+
+8. Anomaly detection scatter plot
 
 - Routes & Distance: Geographic data, traffic patterns, weather impact
 
+### Predictive Models
+
 - Vehicle Fleet: Capacity, fuel efficiency, maintenance schedulessource .venv/bin/activate  # Linux/Mac
 
-- Warehouse Inventory: Stock levels, turnover rates, availability
+1. **RandomForest Classifier**
 
-- Customer Feedback: Ratings, recommendations, issue categories- **PDF Report Generation**: Professional executive reports with ReportLab
+   - Delay prediction with 80%+ AUC- Warehouse Inventory: Stock levels, turnover rates, availability
 
-- Cost Breakdown: Multi-component cost analysis (fuel, labor, tolls, etc.)
+   - Feature importance ranking
 
-# Install dependencies
+   - Hyperparameter tuning- Customer Feedback: Ratings, recommendations, issue categories- **PDF Report Generation**: Professional executive reports with ReportLab
 
-### Visualization Requirements
 
-- 8+ interactive charts and graphspip install -r requirements.txt- **CSV Exports**: Download high-risk orders and recommendationsNexGen Logistics AI Platform is a next-generation predictive delivery optimization system built with cutting-edge machine learning and interactive visualizations. This platform transforms logistics operations through:pip install -r requirements.txt
 
-- 3D scatter plots for multi-dimensional analysis
+2. **Isolation Forest**- Cost Breakdown: Multi-component cost analysis (fuel, labor, tolls, etc.)
+
+   - Anomaly detection for high-risk orders
+
+   - Outlier scoring# Install dependencies
+
+
+
+### Download Capabilities### Visualization Requirements
+
+
+
+1. **PDF Executive Reports**- 8+ interactive charts and graphspip install -r requirements.txt- **CSV Exports**: Download high-risk orders and recommendationsNexGen Logistics AI Platform is a next-generation predictive delivery optimization system built with cutting-edge machine learning and interactive visualizations. This platform transforms logistics operations through:pip install -r requirements.txt
+
+   - Multi-page comprehensive analysis
+
+   - 10+ sections with tables and insights- 3D scatter plots for multi-dimensional analysis
+
+   - Professional styling with ReportLab
 
 - Network graphs for route visualization
 
-- Time-series trend analysis
+2. **CSV Exports**
+
+   - High-risk orders- Time-series trend analysis
+
+   - Filtered datasets
 
 - Custom styling with gradient themes# Run the application- **Custom Styling**: Gradient headers, branded colors, and polished UI
 
+---
 
 
-### Predictive Modelsstreamlit run app.py
-
-- RandomForest classifier with hyperparameter tuning
-
-- Isolation Forest for anomaly detection``````
-
-- Feature importance ranking
-
-- Risk scoring and probability estimates
-
-
-
-### Download CapabilitiesThe app will automatically launch at `http://localhost:8501`### User Experience
-
-- PDF reports with executive summary, KPIs, carrier analysis, route efficiency, priority breakdowns, high-risk orders, environmental impact, cost analysis, insights, recommendations, and action items
-
-- CSV exports for filtered data
-
-- Comprehensive analytics in portable formats
-
-## Project Structure- **Custom CSS Styling**: Modern gradient design with purple/blue theme- **AI-Powered Predictions**: RandomForest ML models with 80%+ AUC for delay prediction
 
 ## Development
 
-
+### Predictive Modelsstreamlit run app.py
 
 ### Code Organization
 
-- Modular design with separate utilities```- **Responsive Layout**: Wide layout optimized for large datasets
+- **Modular Design**: Separate utilities for data, reporting, and UI- RandomForest classifier with hyperparameter tuning
 
-- Clean separation of concerns
+- **Clean Code**: Production-ready with no comments
 
-- Type hints and documentationnexgen_logistics/
+- **Type Safety**: Defensive programming with error handling- Isolation Forest for anomaly detection``````
 
-- Production-ready code without comments
+- **Performance**: Cached data loading with @st.cache_data
 
-├── app.py                      # Main Streamlit application- **Interactive Filters**: Date range, priority, warehouse, carrier, anomaly toggles- **Network Intelligence**: Interactive graph visualization of route networks2. Run the Streamlit app
+- Feature importance ranking
 
 ### Data Generation
 
+If CSV files are missing, synthetic data is automatically generated with:- Risk scoring and probability estimates
+
+- Realistic distributions and correlations
+
+- Date ranges, geographic locations, customer segments
+
+- Delay patterns based on distance and priority
+
+- Cost structures with multiple components### Download CapabilitiesThe app will automatically launch at `http://localhost:8501`### User Experience
+
+
+
+### Git Integration- PDF reports with executive summary, KPIs, carrier analysis, route efficiency, priority breakdowns, high-risk orders, environmental impact, cost analysis, insights, recommendations, and action items
+
+- Repository: https://github.com/ark5234/NexGen_assignment.git
+
+- Branch: main- CSV exports for filtered data
+
+- Status: Production-ready
+
+- Commits: Comprehensive history documenting all features- Comprehensive analytics in portable formats
+
+
+
+---## Project Structure- **Custom CSS Styling**: Modern gradient design with purple/blue theme- **AI-Powered Predictions**: RandomForest ML models with 80%+ AUC for delay prediction
+
+
+
+## Future Enhancements## Development
+
+
+
+- Real-time data streaming with Apache Kafka
+
+- Advanced ML models (XGBoost, LightGBM, Neural Networks)
+
+- Mobile-responsive design for tablets### Code Organization
+
+- Multi-language support (English, Hindi, Spanish)
+
+- RESTful API endpoints for external integration- Modular design with separate utilities```- **Responsive Layout**: Wide layout optimized for large datasets
+
+- Cloud deployment (AWS/GCP/Azure)
+
+- User authentication and role-based access- Clean separation of concerns
+
+- Advanced analytics with time-series forecasting
+
+- Type hints and documentationnexgen_logistics/
+
+---
+
+- Production-ready code without comments
+
+## License
+
+├── app.py                      # Main Streamlit application- **Interactive Filters**: Date range, priority, warehouse, carrier, anomaly toggles- **Network Intelligence**: Interactive graph visualization of route networks2. Run the Streamlit app
+
+MIT License - See repository for details
+
+### Data Generation
+
+---
+
 If CSV files are missing, synthetic data is automatically generated with realistic distributions and relationships.├── utils.py                    # Data loading and preprocessing utilities
 
+## Contact
 
 
-### Git Integration├── report_generator.py         # PDF report generation module- **Tabbed Interface**: Organized navigation (Analytics, AI Predictions, Network, Reports)
 
-Version controlled with comprehensive commit history documenting all features and fixes.
+- **Repository**: https://github.com/ark5234/NexGen_assignment
 
-├── requirements.txt            # Python dependencies
+- **Issues**: Open an issue on GitHub for questions or feedback### Git Integration├── report_generator.py         # PDF report generation module- **Tabbed Interface**: Organized navigation (Analytics, AI Predictions, Network, Reports)
 
-## Future Enhancements
+- **Status**: Production-ready prototype
+
+- **Last Updated**: October 2025Version controlled with comprehensive commit history documenting all features and fixes.
+
+
+
+---├── requirements.txt            # Python dependencies
+
+
+
+**Built with precision for NexGen Logistics**## Future Enhancements
+
 
 ├── .gitignore                  # Git ignore patterns- **Anomaly Detection**: Automated identification of high-risk orders using Isolation Forest
 
